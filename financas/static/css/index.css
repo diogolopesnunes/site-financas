@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0 ;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+}
+
+.cabecalho {
+    font-size: 20px;
+    background-color: #F23E02;
+    color:white;
+    overflow:auto;
+}
+
+.porquinho-logo{
+    height: 10px;
+    width: 10px;
+}
+
+p .home, .transferencia, .login, .cadastro {
+    text-align: right;
+    padding: 20px;
+    flex-direction:left;
+}
+
+.banner {
+    width: 80%;
+    height: 80%;
+}
+
+.conheca-a-bigbank {
+    text-align: center;
+    align-self: -50%;
+    color:white;
+}
+
+.bigbank-sobre {
+    color: #F23E02;
+    font-size: 20px;
+}
+
+.txt-sobre {
+    text-align: left;
+    color: black;
+}
+.img-parte-objetivo {
+    align-items: left;
+    height: 500px;
+    height: 300px;
+}
+
+.titulo-importancia {
+    color: black;
+    font-size: 20px;
+}
+
+.txt.importancia {
+    color:white;
+    background-color: #F23E02;
+    width: 200px;
+    height: 200px;
+}
+
+.txt2-importancia{
+    color:white;
+    background-color: #F23E02;
+    width: 200px;
+    height: 200px;
+}
+
+.botao-final{
+    text-align: center;
+    text-decoration: none;
+}
+
+.rodape{
+    color: white;
+    background-color: #F23E02;
+    padding: 0;
+}
+
+p .home, .transferencia, .login, .cadastro {
+    text-align: right;
+    padding: 20px;
+    flex-direction:left;
+}
+
+p .contato, .email{
+    text-align: end;
+    color:white ;
+}
