@@ -11,9 +11,11 @@
     align-items: center;
     background-color: #F23E02;
     color: white;
-    height: 100px;
+    height: 40px; /* isso está muito pequeno! veja mais abaixo */
+    width: 90%;
     padding: 0 40px;
     font-size: 20px;
+    gap: 30px; /* pode manter esse se for pra espaçar itens */
 }
 
 .porquinho-logo{
@@ -21,23 +23,19 @@
     align-items: center;
     height: 50px;
     width: 50px;
-    margin-right: 10px;
-}
-
-.cabecalho{
-    display: flex;
-    gap: 30px;
-}
-
-.cabecalho a{
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+    margin-left: 0px;
 }
 
 .banner {
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 60vh;
+}
+
+.img-banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .conheca-a-bigbank {
