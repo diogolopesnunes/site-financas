@@ -5,70 +5,189 @@
     font-family: "Montserrat", sans-serif;
 }
 
+body {
+    background-color: #fff;
+}
+
+
 .cabecalho {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #F23E02;
-    color: white;
-    height: 40px; /* isso está muito pequeno! veja mais abaixo */
-    width: 90%;
-    padding: 0 40px;
-    font-size: 20px;
-    gap: 30px; /* pode manter esse se for pra espaçar itens */
+    background-color: #f24822; 
+    padding: 15px 40px;
+    height: 43px;
 }
 
-.porquinho-logo{
+.logo{
     display: flex;
     align-items: center;
-    height: 50px;
-    width: 50px;
-    margin-left: 0px;
+    gap: 10px;
 }
 
+.nome-logo {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+    margin-right: 0px;
+}
+
+.porquinho-logo {
+    height: 42px;
+    margin-top: 0px;
+    justify-items: start;
+
+}
+
+nav a {
+    margin: 0px 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+
 .banner {
-    width: 100%;
-    height: 60vh;
+    position: relative;
+    text-align: left;
+    background-image: url(../img/img-banner.png);
+    padding: 0;
+    height: 500px;
+    overflow: hidden;
+    
 }
 
 .img-banner {
     width: 100%;
-    height: 100%;
+    height: 500px;
     object-fit: cover;
-    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.banner h3 {
+    position: absolute;
+    top: 100px;
+    left: 60px;
+    font-size: 48px;
+    font-weight: bold;
+    z-index: 2;
+    color: white;
+}
+
+.banner p {
+    position: absolute;
+    left: 60px;
+    font-size: 24px;
+    z-index: 2;
+}
+
+.subtitulo-banner {
+    position: absolute;
+    top: 170px;
+    left: 60px;
+    font-size: 24px;
+    color: white;
 }
 
 .conheca-a-bigbank {
+    bottom: 60px;
+    left: 60px;
+    font-size: 50px;
+    font-weight: 600;
     text-align: center;
-    align-self: -50%;
-    color:white;
+    color: white;
 }
+
 
 .bigbank-sobre {
     color: #F23E02;
-    font-size: 20px;
+    font-size: 40px;
+}
+
+.sobre {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    margin-bottom: 60px;
+    margin-top: 70px;
+    margin-left: 50px;
+}
+
+.text-do-sobre{
+    margin-right: 50px;
+}
+
+.img-parte-sobre{
+    width: 500px;
+    margin-right: 20px;
 }
 
 .txt-sobre {
     text-align: left;
     color: black;
+    padding: 30px;
+    font-size: 24px;
 }
+
+.bigbank-sobre{
+    text-align: center;
+    font-weight: bold;
+}
+
 .img-parte-objetivo {
     align-items: left;
-    height: 500px;
-    height: 300px;
+    width: 500px;
+    margin-left: 100px;
 }
+
+.objetivo{
+    display: flex;   
+    flex-direction: row-reverse;
+    padding: 35px;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+}
+
+.obj-quadrado{
+    background-color: #F23E02;
+    width: 380px;
+    height: 290px;
+    font-weight: bold;
+}
+
+.txt-obj{
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    padding: 30px;;
+}
+
+.importancia{
+    margin-top: 75px;
+}
+
 
 .titulo-importancia {
-    color: black;
+    color: #F23E02;
     font-size: 20px;
+    font-weight: bold;
 }
 
-.txt.importancia {
-    color:white;
+.txt1-importancia {
+color: white;
     background-color: #F23E02;
     width: 200px;
-    height: 200px;
+    height: 175px;
+    padding: 15px;
 }
 
 .txt2-importancia{
