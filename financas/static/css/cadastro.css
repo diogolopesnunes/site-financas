@@ -48,12 +48,11 @@ nav a:hover {
 
 section {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
 }
 
 section img {
-    width: 450px;
-    height: 100;
+    width: 450px
 }
 
 form input{
@@ -63,9 +62,13 @@ form input{
     height: 20px;
     padding: 5px;
     border-color: lightgrey;
+
+
 }
 
-
+form {
+    margin-left: 250px;
+}
 
 button {
     background-color: #FF8800;
@@ -94,17 +97,18 @@ a {
     margin-top: -17px;
 }
 
-.cadastr{
+.Cadastro{
     display: flex;
     flex-direction: row-reverse;
     gap: 350px;
+    flex-direction: space-between;
 }
 
-.form-cadastro{
+form .Cadastro{
     margin-top: 40px;
 }
 
 h1 {
-    font-size: 40px;
+    font-size: 60px;
     padding: 10px;
 }
