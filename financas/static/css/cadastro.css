@@ -9,38 +9,102 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #F23E02;
-    color: white;
-    height: 60px;
-    padding: 0 50px;
-    font-size: 20px;
-   
-    max-width: 1200px;
-    margin: 0 auto;      
+    background-color: #f24822;
+    padding: 15px 40px;
+    height: 43px;
 }
 
-.cabecalho span {
+.logo{
     display: flex;
     align-items: center;
     gap: 10px;
-    font-weight: 800;
+}
+
+.nome-logo {
     font-size: 24px;
+    color: white;
+    font-weight: bold;
+    margin-right: 0px;
 }
 
 .porquinho-logo {
-    height: 50px;
-    width: auto;
-    object-fit: contain;
-}
+    height: 42px;
+    margin-top: 0px;
+    justify-items: start;
 
-nav {
-    display: flex;
-    align-items: center;
-    gap: 30px;
 }
 
 nav a {
-    text-decoration: none;
+    margin: 0px 25px;
     color: white;
-    font-weight: 600;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+nav a:hover {
+    text-decoration: none;
+}
+
+section {
+    display: flex;
+    justify-content: end;
+}
+
+section img {
+    width: 450px;
+    height: 100;
+}
+
+form input{
+    border-radius: 100px;
+    margin: 8px;
+    width: 200px;
+    height: 20px;
+    padding: 5px;
+    border-color: lightgrey;
+}
+
+
+
+button {
+    background-color: #FF8800;
+    color: white;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+
+
+a {
+    color:#FF8800;
+    text-decoration: none;
+}
+
+.rodape {
+    background-color: #F23E02;
+    color: white;
+}
+.rodape nav {
+    display: flex;
+    align-self: flex-start;
+    justify-content: end;
+    flex-direction: row;
+    text-decoration: none;
+    margin-top: -17px;
+}
+
+.cadastr{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 350px;
+}
+
+.form-cadastro{
+    margin-top: 40px;
+}
+
+h1 {
+    font-size: 40px;
+    padding: 10px;
 }
