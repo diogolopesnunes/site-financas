@@ -39,6 +39,11 @@ body {
 
 }
 
+.rodape-nav {
+    display: flex;
+    justify-content: end;
+}
+
 nav a {
     margin: 0px 25px;
     color: white;
@@ -57,14 +62,14 @@ nav a:hover {
     text-align: left;
     background-image: url(../img/img-banner.png);
     padding: 0;
-    height: 500px;
+    height: 600px;
     overflow: hidden;
     
 }
 
 .img-banner {
     width: 100%;
-    height: 500px;
+    height: 600px;
     object-fit: cover;
     position: absolute;
     top: 0;
@@ -74,7 +79,7 @@ nav a:hover {
 
 .banner h3 {
     position: absolute;
-    top: 100px;
+    top: 50px;
     left: 60px;
     font-size: 48px;
     font-weight: bold;
@@ -84,6 +89,7 @@ nav a:hover {
 
 .banner p {
     position: absolute;
+    top: 110px;
     left: 60px;
     font-size: 24px;
     z-index: 2;
@@ -96,16 +102,6 @@ nav a:hover {
     font-size: 24px;
     color: white;
 }
-
-.conheca-a-bigbank {
-    bottom: 60px;
-    left: 60px;
-    font-size: 50px;
-    font-weight: 600;
-    text-align: center;
-    color: white;
-}
-
 
 .bigbank-sobre {
     color: #F23E02;
@@ -135,6 +131,7 @@ nav a:hover {
     color: black;
     padding: 30px;
     font-size: 24px;
+    width: 500px;
 }
 
 .bigbank-sobre{
@@ -159,8 +156,8 @@ nav a:hover {
 
 .obj-quadrado{
     background-color: #F23E02;
-    width: 380px;
-    height: 290px;
+    width: 500px;
+    height: 250px;
     font-weight: bold;
     justify-content: center;
 }
@@ -218,11 +215,10 @@ color: white;
 
 p .home, .transferencia, .login, .cadastro {
     text-align: right;
-    padding: 20px;
     flex-direction:left;
 }
 
 p .contato, .email{
-    text-align: end;
+    text-align: start;
     color:white ;
 }
