@@ -162,6 +162,7 @@ nav a:hover {
     width: 380px;
     height: 290px;
     font-weight: bold;
+    justify-content: center;
 }
 
 .txt-obj{
@@ -173,11 +174,13 @@ nav a:hover {
 
 .importancia{
     margin-top: 75px;
+    display: flex;
+    justify-content: space-around;
 }
 
 
 .titulo-importancia {
-    color: #F23E02;
+    color: #000000;
     font-size: 20px;
     font-weight: bold;
 }
@@ -185,16 +188,21 @@ nav a:hover {
 .txt1-importancia {
 color: white;
     background-color: #F23E02;
-    width: 200px;
-    height: 175px;
+    width: 490px;
+    height: 80px;
     padding: 15px;
+    justify-content: center;
+    flex-direction: row;
 }
 
 .txt2-importancia{
     color:white;
     background-color: #F23E02;
-    width: 200px;
-    height: 200px;
+    width: 510px;
+    height: 80px;
+    padding: 15px;
+    justify-content: center;
+    flex-direction: row;
 }
 
 .botao-final{
