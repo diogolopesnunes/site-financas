@@ -29,23 +29,27 @@
 
 
     <img src="static/img/img-pag-cadastro.png" alt="Imagem">
+    Exibição de mensagens flash
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
 
-
-
-    <form action="#" method="post">
-  <h1>Cadastro</h1>
-
-  <input type="text" placeholder="Nome Completo" required><br>
-  <input type="tel" placeholder="Número de Telefone" required><br>
-  <input type="text" placeholder="Insira seu CPF" required><br>
-  <input type="email" placeholder="Insira seu E-mail" required><br>
-  <input type="password" placeholder="Insira sua Senha" minlength="8" required><br>
-  <input type="password" placeholder="Confirme sua Senha" minlength="8" required><br>
-
-  <button type="submit">Cadastrar</button>
-  
-</form>
-
+    <form method="POST" action="/cadastro">
+        <h1>Cadastro</h1>
+        <input type="text" name="nome" placeholder="Nome Completo" required><br>
+        <input type="tel" name="tel" placeholder="Telefone" required><br>
+        <input type="text" name="cpf" placeholder="CPF" required><br>
+        <input type="email" name="email" placeholder="E-mail" required><br>
+        <input type="password" name="senha" placeholder="Senha" minlength="8" required><br>
+        <input type="password" name="confirm_senha" placeholder="Confirme a Senha" minlength="8" required><br>
+        <button type="submit">Cadastrar</button>
+    </form>
 
     <a href=""> Já é membro ? Faça Login </a>
 
@@ -72,4 +76,4 @@
 
 
 </body>
-</html>    
+</html>
