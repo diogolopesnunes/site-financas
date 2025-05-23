@@ -8,7 +8,7 @@ usuarios = []
 
 @app.route("/")
 def home():
-    return "Bem-vindo ao meu site!"
+    return render_template("index.html")
 
 @app.route("/inicial_usuario")
 def pagina_inicial_usuario():
