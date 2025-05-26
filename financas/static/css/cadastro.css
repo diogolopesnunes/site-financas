@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0 ;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f24822;
+    padding: 15px 40px;
+    height: 43px;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nome-logo {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+    margin-right: 0px;
+}
+
+.porquinho-logo {
+    height: 42px;
+    margin-top: 0px;
+    justify-items: start;
+
+}
+
+nav a {
+    margin: 0px 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+nav a:hover {
+    text-decoration: none;
+}
+
+section {
+    display: flex;
+    justify-content: space-between;
+}
+
+section img {
+    width: 450px
+}
+
+form input{
+    border-radius: 100px;
+    margin: 8px;
+    width: 200px;
+    height: 20px;
+    padding: 5px;
+    border-color: lightgrey;
+
+
+}
+
+form {
+    margin-left: 250px;
+}
+
+button {
+    background-color: #FF8800;
+    color: white;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+
+
+a {
+    color:#FF8800;
+    text-decoration: none;
+}
+
+.rodape {
+    background-color: #F23E02;
+    color: white;
+}
+.rodape nav {
+    display: flex;
+    align-self: flex-start;
+    justify-content: end;
+    flex-direction: row;
+    text-decoration: none;
+    margin-top: -17px;
+}
+
+.Cadastro{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 350px;
+    flex-direction: space-between;
+}
+
+form .Cadastro{
+    margin-top: 40px;
+}
+
+h1 {
+    font-size: 60px;
+    padding: 10px;
+}
