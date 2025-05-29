@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../static/css/cadastro.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BigBANK</title>
+</head>
+
+<body>
+
+
+    <div class="cabecalho">
+
+        <div class="logo">
+            <h2 class="nome-logo"> BIGBANK </h2>
+            <img class="porquinho-logo" src="static/img/logo-porquinho.png" alt=" Logo do Site ">
+        </div>
+
+        <nav>
+            <a href="/" class="home"> Home </a>
+            <a href="/inicial_usuario" class="transferencias"> Transferencias </a>
+            <a href="/abrir_login" class="login"> Login </a>
+            <a href="/cadastro" class="cadastro"> Cadastro </a>
+        </nav>
+    </div>
+
+
+    <div>
+
+        <h2> Editar Transferencias </h2>
+
+        <form method="post" action="/editar-transferencia">
+
+            <input type="date" name="Data" placeholder="Insira a Data" required><br>
+            
+            <input type="text" name="Origem/Saída" placeholder="Insira a Origem ou Saída" required><br>
+
+            <input type="password" name="Valor" placeholder="Insira o Valor" required><br>
+
+            <button type="submit">Adicionar</button>
+        </form>
+    </div>
+
+
+
+
+    <footer class="rodape">
+
+
+        <h2 class="nome-logo"> BIGBANK </h2>
+
+        <nav>
+            <a href="/" class="home"> Home </a>
+            <a href="/perfil" class="transferencias"> Transferencias </a>
+            <a href="/login" class="login"> Login </a>
+            <a href="/cadastro" class="cadastro"> Cadastro </a>
+        </nav>
+
+        <p class="contato"> Contato: (18) 99139-1404</p>
+        <p class="email"> Email: contato@bigbank.com.br </p>
+
+    </footer>
+
+
+</body>
+
+</html>

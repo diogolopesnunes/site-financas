@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0 ;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Obrigatório para funcionar */
+}
+
+.flash {
+    border: 10px solid #F23E02;
+    border-radius: 45px;
+}
+
+.rodape {
+    margin-bottom: 0px; /* garante que o rodapé fique no final */
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f24822;
+    padding: 15px 40px;
+    height: 43px;
+}
+.flash-messages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.botoes-pag-usuario {
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    
+}
+
+h2 {
+    font-size: 60px;
+    padding: 10px;
+}
+
+.nome-logo {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+    margin-right: 0px;
+}
+
+.porquinho-logo {
+    height: 42px;
+    margin-top: 0px;
+    justify-items: start;
+
+}
+
+nav a {
+    margin: 0px 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+nav a:hover {
+    text-decoration: none;
+}
+
+.nome-de-usuario {
+    display: flex;
+    justify-items: flex-start;
+}
+
+.username {
+    display: flex;
+    font-size: 40px;
+    justify-self: center;
+    align-items: center;
+    padding: 20px;
+    margin: 20px ;
+}
+
+.config {
+    padding: 10px;
+    text-decoration: none;
+}
+
+.ultilidade{
+    text-decoration: none;
+}
+
+
+.rodape {
+    margin-top: auto;
+    background-color: #F23E02;
+    color: white;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+.rodape nav {
+    display: flex;
+    align-self: flex-start;
+    justify-content: end;
+    flex-direction: row;
+    text-decoration: none;
+}
