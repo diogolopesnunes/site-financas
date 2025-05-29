@@ -4,6 +4,7 @@ app = Flask(__name__)
 app.secret_key = "senhanadasecreta"
 
 usuarios = []
+logado = []
 
 
 @app.route("/")
@@ -60,7 +61,9 @@ def cadastrar():
 
 @app.route("/login")
 def login():
-    return render_template("login.html")
+    if request.method == "POST": # Faz o código rodar caso o usuário preencha e envie as informações no formulário
+            cpf = request.form.get("cpf") #Informação do nome
+            senha = request.form.get("senha") #Informação do telefone
 
 
 @app.route("/inicial_usuario")
