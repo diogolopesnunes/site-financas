@@ -11,6 +11,11 @@ body {
     min-height: 100vh; /* Obrigatório para funcionar */
 }
 
+.flash {
+    border: 10px solid #F23E02;
+    border-radius: 45px;
+}
+
 .rodape {
     margin-bottom: 0px; /* garante que o rodapé fique no final */
 }
