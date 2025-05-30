@@ -72,7 +72,7 @@ def cadastrar():
         usuarios.append(usuario)
         flash("Cadastro realizado com sucesso!")
         print(usuarios)
-        return redirect("/cadastro")
+        return redirect("/login")
 
     return render_template("cadastro.html")
 
@@ -87,6 +87,7 @@ def login():
             if u['cpf'] == cpf:
                 if u['senha'] == senha:
                     flash('Usuário logado com sucesso')
+                    print(f"Usuário {u['nome']} logado com sucesso")
                     return redirect('/inicial_usuario')
                 else:
                     flash('Credenciais inválidas')
@@ -127,8 +128,6 @@ def editar():
         minuscula = False  # Variavel que diz se tem letra minuscula
         numero = False  # Variavel que diz se tem numero
         simbolo = False  # Variavel que diz se tem caractere especial
-        # simbolos = "!@#$%^&*()<>,." #Variavel com a lista de simbolos válidos
-        # numeros = "0123456789" #Variavel com a lista de números
 
         for c in senha:
             if c.upper():  # Verifica se tem letra maiuscula na senha
@@ -167,7 +166,8 @@ def editar():
 
 @app.route("/historico_transferencia")
 def historico_transferencia():
-    return render_template("historico_transferencia.html", transferencias=transferencias, methods=['GET', 'POST'])
+    total = sum(t[3] for t in transferencias)
+    return render_template("historico_transferencia.html", transferencias=transferencias, total=total)
 
 
 @app.route('/adicionar_transferencia', methods=['GET', 'POST'])
@@ -175,48 +175,48 @@ def adicionar_transferencia():
     if request.method == 'POST':
         data = request.form['data']
         entrada_saida = request.form['entrada_saida']
-        valor = request.form['valor']
+        valor = float(request.form['valor'])
         codigo = len(transferencias) + 1
         transferencias.append([codigo, data, entrada_saida, valor])
         return redirect('/historico_transferencia')  
     return render_template('adicionar_transferencia.html')  
 
 
-@app.route('/editar_transferencia', methods=['GET', 'POST'])
-def editar_transferencia():
-    transferencia = transferencias['codigo']
+@app.route('/editar_transferencia/<int:codigo>', methods=['GET', 'POST'])
+def editar_transferencia(codigo):
     if request.method == 'POST':
+        global transferencias
+        transferencia = transferencias[codigo]
         transferencia[1] = request.form['data']
         transferencia[2] = request.form['entrada_saida']
         transferencia[3] = request.form["valor"]
         flash("Transferência editada com sucesso!")
         return redirect('/historico_transferencia')
 
-    return render_template('editar_transferencia.html')
+    return render_template('editar_transferencia.html', transferencia=transferencia)
 
 
-@app.route('/apagar_contato/<int:codigo>')
+@app.route('/apagar_transferencia/<int:codigo>')
 def apagar_transferencia(codigo):
-    del transferencias[codigo]
+    global transferencias
+    transferencias = [t for t in transferencias if t[0] != codigo]
     return redirect('/historico_transferencia') 
 
 
-@app.route("/reserva_emergencia")
+@app.route("/reserva_emergencia", methods=["GET", "POST"])
 def reserva_emergencia():
     if request.method == "POST":
-        media = request.form.get("media")  # Informação da média de gastos mensais
-        meses = request.form.get("meses")  # Informação do número de meses para a reserva
-        prazo = request.form.get("prazo")
+        media = float(request.form.get("media"))  # Informação da média de gastos mensais
+        meses = float(request.form.get("meses"))  # Informação do número de meses para a reserva
+        prazo = float(request.form.get("prazo"))
 
         if all([media, meses, prazo]):
             reserva_total = media * meses
             reserva_mensal_recomendada = reserva_total / prazo
             flash(f"Reserva de emergência recomendada: R${reserva_total:.2f} (R${reserva_mensal_recomendada:.2f} por mês)")
+            return redirect("/reserva_emergencia")
         flash("Preencha todos os campos!")
-
-
-        flash(f"Reserva de emergência total: R${reserva_total:.2f} (Reservar R${reserva_mensal_recomendada:.2f} por mês)")
-        # Aqui você poderia adicionar lógica para salvar a reserva em um banco de dados ou lista
+        return redirect("/reserva_emergencia")
     
     return render_template("reserva_emergencia.html")
 

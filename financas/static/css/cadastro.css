@@ -3,6 +3,7 @@
     margin: 0 ;
     padding: 0;
     font-family: "Montserrat", sans-serif;
+    text-decoration: none;
 }
 
 body {
@@ -12,16 +13,21 @@ body {
 }
 
 .flash-messages {
-    background-color: rgb(134, 34, 0);
     padding: 10px;
     text-align: center;
-    color: white;
+    color: #F23E02;
     width: 280px;
     margin-top: 30px;
+    animation: flash-out 1s ease 2s forwards; /* <-- Aqui aplica a animação */
 }
 
-.rodape {
-    margin-bottom: 0px; /* garante que o rodapé fique no final */
+@keyframes flash-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 .cabecalho {
@@ -116,19 +122,4 @@ a {
 h2 {
     font-size: 60px;
     padding: 10px;
-}
-
-.rodape {
-    margin-top: auto;
-    background-color: #F23E02;
-    color: white;
-    padding-left: 20px;
-    padding-bottom: 10px;
-}
-.rodape nav {
-    display: flex;
-    align-self: flex-start;
-    justify-content: end;
-    flex-direction: row;
-    text-decoration: none;
 }

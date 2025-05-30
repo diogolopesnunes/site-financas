@@ -3,6 +3,7 @@
     margin: 0 ;
     padding: 0;
     font-family: "Montserrat", sans-serif;
+    text-decoration: none;
 }
 
 body {
@@ -53,47 +54,40 @@ nav a:hover {
 .banner {
     position: relative;
     text-align: left;
-    background-image: url(../img/img-banner.png);
+    background-image: url(../img/banner.png);
     padding: 0;
-    height: 600px;
     overflow: hidden;
-    
+    justify-items: center;
+    height: 691.025px;
 }
 
 .img-banner {
-    width: 100%;
-    height: 600px;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
+    width: 1519.2px;
+    max-width: 1519.2px;
 }
 
 .banner h3 {
-    position: absolute;
-    top: 50px;
-    left: 60px;
+    position: relative;
     font-size: 48px;
     font-weight: bold;
-    z-index: 2;
     color: white;
+    font-size: 70px;
 }
 
 .banner p {
-    position: absolute;
-    top: 110px;
-    left: 60px;
-    font-size: 24px;
-    z-index: 2;
+    top: -10px;
+    position: relative;
+    font-size: 40px;
 }
 
 .subtitulo-banner {
-    position: absolute;
-    top: 170px;
-    left: 60px;
+    position: absolute;;
+    left: 0;
+    width: 100%;
     font-size: 24px;
     color: white;
+    text-align: center;
+    padding: 30px;
 }
 
 .bigbank-sobre {
@@ -101,76 +95,43 @@ nav a:hover {
     font-size: 40px;
     margin: 10px;
     padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    justify-self: start;
 }
 
 .sobre {
+    margin-bottom: 0px; /* garante que o rodapé fique no final */
     display: flex;
-    align-items: start;
-    justify-content: center;
-    margin-bottom: 60px;
-    margin-top: 70px;
-    margin-left: 50px;
+    flex-direction: column;
+    border-radius: 45px;
+    border: 10px solid #F23E02;
+    justify-self: center;
+    margin-bottom: 100px;
 }
 
 .text-do-sobre{
-    margin-right: 50px;
-    border-radius: 45px;
-    border-color: #F23E02;
+    display: flex;
+    flex-direction: row;
+    padding: 3px;
 }
 
 .img-parte-sobre{
-    width: 500px;
+    width: 525px;
+    height: 350px;
     margin-right: 20px;
     border-radius: 45px;
-    border-color: #F23E02;
     margin: 15px;
+    align-items: end;
 }
 
 .txt-sobre {
     text-align: left;
     color: black;
     padding: 30px;
-    font-size: 24px;
     width: 500px;
 }
 
-.bigbank-sobre{
-    text-align: center;
-    font-weight: bold;
-}
-
-.img-parte-objetivo {
-    align-items: left;
-    width: 500px;
-    margin-left: 100px;
-    border-radius: 45px;
-    border-color: #F23E02;
-}
-
-.objetivo{
-    display: flex;   
-    flex-direction: row-reverse;
-    padding: 35px;
-    justify-content: center;
-    align-items: center;
-    gap: 60px;
-}
-
-.obj-quadrado{
-    width: 500px;
-    height: 250px;
-    font-weight: bold;
-    justify-content: center;
-    border-radius: 45px;
-    border-color: #F23E02;
-}
-
-.txt-obj{
-    font-size: 24px;
-    font-weight: bold;
-    color: black;
-    padding: 30px;
-}
 
 .importancia{
     margin-top: 75px;
@@ -185,37 +146,31 @@ nav a:hover {
     color: #F23E02;
     font-size: 20px;
     font-weight: bold;
-    border-radius: 45px;
-    border-color: #F23E02;
 }
 
 .txt1-importancia {
     color: black;
-    width: 490px;
-    height: 80px;
     padding: 15px;
     justify-content: center;
     flex-direction: row;
-    border-radius: 45px;
-    border-color: #F23E02;
 }
 
 .txt2-importancia{
     color:black;
-    width: 510px;
-    height: 80px;
     padding: 15px;
     justify-content: center;
     flex-direction: row;
-    border-radius: 45px;
-    border-color: #F23E02;
 }
 
+p {
+    font-size: 30px;
+}
 
 .rodape {
     margin-top: auto;
     background-color: #F23E02;
     color: white;
+    padding: 10px;
     padding-left: 20px;
     padding-bottom: 10px;
 }

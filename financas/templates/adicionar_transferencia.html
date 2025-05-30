@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-
+    <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/cadastro.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +22,7 @@
 
         <nav>
             <a href="/" class="home"> Home </a>
-            <a href="/inicial_usuario" class="transferencias"> Transferencias </a>
+            <a href="/inicial_usuario" class="transferencias"> Usuário </a>
             <a href="/login" class="login"> Login </a>
             <a href="/cadastro" class="cadastro"> Cadastro </a>
         </nav>
@@ -32,14 +32,14 @@
     <div>
 
 
-        <form method="POST" action="/historico_transferencia">
+        <form method="POST" action="/adicionar_transferencia">
             <h2 class="titulo"> Adicionar Transferencias </h2>
 
-            <input type="date" name="Data" placeholder="Insira a Data" required><br>
+            <input type="date" name="data" placeholder="Insira a Data" required><br>
             
-            <input type="text" name="Entrada ou Saída" placeholder=" Entrada ou Saída" required><br>
+            <input type="text" name="entrada_saida" placeholder=" Entrada ou Saída" required><br>
 
-            <input type="number" name="Valor" placeholder="Valor" required><br>
+            <input type="number" name="valor" placeholder="Valor" required><br>
 
             <button type="submit">Adicionar</button>
         </form>
@@ -55,7 +55,7 @@
 
         <nav>
             <a href="/" class="home"> Home </a>
-            <a href="/perfil" class="transferencias"> Transferencias </a>
+            <a href="/perfil" class="transferencias"> Usuário </a>
             <a href="/login" class="login"> Login </a>
             <a href="/cadastro" class="cadastro"> Cadastro </a>
         </nav>
