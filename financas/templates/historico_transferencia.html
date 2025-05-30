@@ -24,7 +24,7 @@
         <nav>
             <a href="/" class="home"> Home </a>
             <a href="/inicial_usuario" class="transferencias"> Transferencias </a>
-            <a href="/abrir_login" class="login"> Login </a>
+            <a href="/login" class="login"> Login </a>
             <a href="/cadastro" class="cadastro"> Cadastro </a>
         </nav>
     </div>
@@ -40,8 +40,6 @@
 
     <div class="container">
     <h3>Entrada</h3>    
-
-    <a class="botao" href="/adicionar_transferencia">+ Adicionar Transferencia</a>
 
     <table>
         {% for transferencia in transferencias %}
@@ -61,7 +59,8 @@
         {% endfor %}
     </div>
 
-
+    <a class="botao" href="/adicionar_transferencia">+ Adicionar Transferencia</a>
+    
     <footer class="rodape">
 
 

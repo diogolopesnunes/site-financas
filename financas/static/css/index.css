@@ -99,6 +99,8 @@ nav a:hover {
 .bigbank-sobre {
     color: #F23E02;
     font-size: 40px;
+    margin: 10px;
+    padding: 10px;
 }
 
 .sobre {
@@ -112,11 +114,16 @@ nav a:hover {
 
 .text-do-sobre{
     margin-right: 50px;
+    border-radius: 45px;
+    border-color: #F23E02;
 }
 
 .img-parte-sobre{
     width: 500px;
     margin-right: 20px;
+    border-radius: 45px;
+    border-color: #F23E02;
+    margin: 15px;
 }
 
 .txt-sobre {
@@ -136,6 +143,8 @@ nav a:hover {
     align-items: left;
     width: 500px;
     margin-left: 100px;
+    border-radius: 45px;
+    border-color: #F23E02;
 }
 
 .objetivo{
@@ -148,67 +157,60 @@ nav a:hover {
 }
 
 .obj-quadrado{
-    background-color: #F23E02;
     width: 500px;
     height: 250px;
     font-weight: bold;
     justify-content: center;
+    border-radius: 45px;
+    border-color: #F23E02;
 }
 
 .txt-obj{
     font-size: 24px;
     font-weight: bold;
-    color: white;
-    padding: 30px;;
+    color: black;
+    padding: 30px;
 }
 
 .importancia{
     margin-top: 75px;
     display: flex;
     justify-content: space-around;
+    border-radius: 45px;
+    border-color: #F23E02;
 }
 
 
 .titulo-importancia {
-    color: #000000;
+    color: #F23E02;
     font-size: 20px;
     font-weight: bold;
+    border-radius: 45px;
+    border-color: #F23E02;
 }
 
 .txt1-importancia {
-color: white;
-    background-color: #F23E02;
+    color: black;
     width: 490px;
     height: 80px;
     padding: 15px;
     justify-content: center;
     flex-direction: row;
+    border-radius: 45px;
+    border-color: #F23E02;
 }
 
 .txt2-importancia{
-    color:white;
-    background-color: #F23E02;
+    color:black;
     width: 510px;
     height: 80px;
     padding: 15px;
     justify-content: center;
     flex-direction: row;
+    border-radius: 45px;
+    border-color: #F23E02;
 }
 
-.botao-final{
-    text-align: center;
-    text-decoration: none;
-}
-
-p .home, .transferencia, .login, .cadastro {
-    text-align: right;
-    flex-direction:left;
-}
-
-p .contato, .email{
-    text-align: start;
-    color:white ;
-}
 
 .rodape {
     margin-top: auto;
@@ -217,7 +219,6 @@ p .contato, .email{
     padding-left: 20px;
     padding-bottom: 10px;
 }
-
 .rodape nav {
     display: flex;
     align-self: flex-start;

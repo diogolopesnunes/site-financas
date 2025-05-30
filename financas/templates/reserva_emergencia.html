@@ -23,7 +23,7 @@
         <nav>
             <a href="/" class="home"> Home </a>
             <a href="/inicial_usuario" class="transferencias"> Transferencias </a>
-            <a href="/abrir_login" class="login"> Login </a>
+            <a href="/login" class="login"> Login </a>
             <a href="/cadastro" class="cadastro"> Cadastro </a>
         </nav>
     </div>
@@ -32,14 +32,14 @@
     <div>
 
 
-        <form method="post" action="/transferencia">
+        <form method="post" action="/historico_transferencia">
             <h2 class="titulo"> Calcular Reserva de Emergencia </h2>
 
-            <input type="number" name="Média" placeholder="Insira a Média" required><br>
+            <input type="number" name="media" placeholder="Insira a Média" required><br>
             
-            <input type="number" name="Meses de Cobertura" placeholder=" Meses de Cobertura" required><br>
+            <input type="number" name="meses" placeholder=" Meses de Cobertura" required><br>
 
-            <input type="number" name="Prazo da Meta" placeholder="Prazo da Meta" required><br>
+            <input type="number" name="prazo" placeholder="Prazo da Meta" required><br>
 
             <button type="submit">Calcular</button>
         </form>

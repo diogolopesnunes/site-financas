@@ -11,6 +11,11 @@ body {
     min-height: 100vh; /* Obrigatório para funcionar */
 }
 
+a {
+    text-decoration: none;
+    color: #000;
+}
+
 .flash {
     border: 10px solid #F23E02;
     border-radius: 45px;

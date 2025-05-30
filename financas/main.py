@@ -5,7 +5,7 @@ app.secret_key = "senhanadasecreta"
 
 usuarios = []
 transferencias = []
-nome = ""
+
 
 
 @app.route("/")
@@ -77,27 +77,23 @@ def cadastrar():
     return render_template("cadastro.html")
 
 
-@app.route('/abrir_login')
-def abrir_login():
-    return render_template('login.html')
-
-
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    cpf = request.form['cpf']  # Informação do nome
-    senha = request.form['senha']  # Informação do telefone
+    if request.method == "POST":
+        cpf = request.form['cpf']
+        senha = request.form['senha']
 
-    for u in usuarios:
-        if u['cpf'] == cpf:
-            if u['senha'] == senha:
-                nome = u['nome']
-                flash('Usuário logado com sucesso')
-                return redirect('/inicial_usuario')
-            flash('Credenciais inválidas')
-            return redirect('/login')
-        flash('Usuário nao encontrado')
+        for u in usuarios:
+            if u['cpf'] == cpf:
+                if u['senha'] == senha:
+                    flash('Usuário logado com sucesso')
+                    return redirect('/inicial_usuario')
+                else:
+                    flash('Credenciais inválidas')
+                    return redirect('/login')
+        flash('Usuário não encontrado')
         return redirect('/login')
-
+    return render_template('login.html')
 
 @app.route("/inicial_usuario")
 def inicial_usuario():
@@ -152,26 +148,26 @@ def editar():
         if not (maiuscula or minuscula or numero or simbolo):
             flash("A senha deve conter pelo menos uma letra maiuscula e minuscula, um número e um caractere especial")
 
-        usuario = {
-            "nome": nome,
-            "tel": tel,
-            "cpf": cpf,
-            "email": email,
-            "senha": senha
-        }
-
-        usuarios.append(usuario)
-        flash("Edição realizada com sucesso!")
-        print(usuarios)
-        return redirect("/editar_perfil")
-
+        for u in usuarios:
+            if u["cpf"] == cpf:
+                u["nome"] = nome
+                u["tel"] = tel
+                u["cpf"] = cpf
+                u["email"] = email
+                u["senha"] = senha
+                flash("Edição realizada com sucesso!")
+                print(usuarios)
+                return redirect("/inicial_perfil")
+            
+            flash("Usuário não encontrado")
+            return redirect("/editar_perfil")
+        
     return render_template("editar_perfil.html")
 
 
 @app.route("/historico_transferencia")
 def historico_transferencia():
     return render_template("historico_transferencia.html", transferencias=transferencias, methods=['GET', 'POST'])
-
 
 
 @app.route('/adicionar_transferencia', methods=['GET', 'POST'])
@@ -185,6 +181,7 @@ def adicionar_transferencia():
         return redirect('/historico_transferencia')  
     return render_template('adicionar_transferencia.html')  
 
+
 @app.route('/editar_transferencia', methods=['GET', 'POST'])
 def editar_transferencia():
     transferencia = transferencias['codigo']
@@ -197,13 +194,30 @@ def editar_transferencia():
 
     return render_template('editar_transferencia.html')
 
+
 @app.route('/apagar_contato/<int:codigo>')
 def apagar_transferencia(codigo):
     del transferencias[codigo]
     return redirect('/historico_transferencia') 
 
+
 @app.route("/reserva_emergencia")
 def reserva_emergencia():
+    if request.method == "POST":
+        media = request.form.get("media")  # Informação da média de gastos mensais
+        meses = request.form.get("meses")  # Informação do número de meses para a reserva
+        prazo = request.form.get("prazo")
+
+        if all([media, meses, prazo]):
+            reserva_total = media * meses
+            reserva_mensal_recomendada = reserva_total / prazo
+            flash(f"Reserva de emergência recomendada: R${reserva_total:.2f} (R${reserva_mensal_recomendada:.2f} por mês)")
+        flash("Preencha todos os campos!")
+
+
+        flash(f"Reserva de emergência total: R${reserva_total:.2f} (Reservar R${reserva_mensal_recomendada:.2f} por mês)")
+        # Aqui você poderia adicionar lógica para salvar a reserva em um banco de dados ou lista
+    
     return render_template("reserva_emergencia.html")
 
 

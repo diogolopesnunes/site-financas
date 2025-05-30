@@ -99,15 +99,14 @@ th {
 
 
 .botao {
-      background-color: orangered;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      align-self: end ;
-    }
+    display: flex;
+    bottom: 0px;
+    background-color: #F23E02FF;
+    color: white;
+    border-radius: 20px;
+    padding: 10px;
+    border: none;
+}
 
 .rodape {
     position: fixed;
@@ -118,7 +117,6 @@ th {
     color: white;
     padding-left: 20px;
     padding-bottom: 10px;
-    z-index: 100;
 }
 
 .rodape nav {
