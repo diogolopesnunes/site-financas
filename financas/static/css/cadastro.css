@@ -5,6 +5,16 @@
     font-family: "Montserrat", sans-serif;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Obrigatório para funcionar */
+}
+
+.rodape {
+    margin-bottom: 0px; /* garante que o rodapé fique no final */
+}
+
 .cabecalho {
     display: flex;
     justify-content: space-between;
@@ -13,11 +23,14 @@
     padding: 15px 40px;
     height: 43px;
 }
-
+.flash-messages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .logo{
     display: flex;
     align-items: center;
-    gap: 10px;
 }
 
 .nome-logo {
@@ -48,7 +61,7 @@ nav a:hover {
 
 section {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 section img {
@@ -57,36 +70,49 @@ section img {
 
 form input{
     border-radius: 100px;
-    margin: 8px;
-    width: 200px;
+    width: 280px;
     height: 20px;
     padding: 5px;
-    border-color: lightgrey;
-
-
+    border: none;
+    box-shadow: #A8A8A8 0px 4px 5px;
 }
 
 form {
-    margin-left: 250px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 400px;
+    justify-self: center;
 }
 
 button {
-    background-color: #FF8800;
+    background-color: #F23E02FF;
     color: white;
     border-radius: 20px;
     padding: 10px;
+    border: none;
 }
 
-
-
 a {
-    color:#FF8800;
+    color:#F23E02FF;
     text-decoration: none;
 }
 
+h2 {
+    font-size: 60px;
+    padding: 10px;
+}
+
 .rodape {
+    margin-top: auto;
     background-color: #F23E02;
     color: white;
+    padding-left: 20px;
 }
 .rodape nav {
     display: flex;
@@ -94,21 +120,4 @@ a {
     justify-content: end;
     flex-direction: row;
     text-decoration: none;
-    margin-top: -17px;
-}
-
-.Cadastro{
-    display: flex;
-    flex-direction: row-reverse;
-    gap: 350px;
-    flex-direction: space-between;
-}
-
-form .Cadastro{
-    margin-top: 40px;
-}
-
-h1 {
-    font-size: 60px;
-    padding: 10px;
 }

@@ -17,6 +17,8 @@ body {
     background-color: #f24822; 
     padding: 15px 40px;
     height: 43px;
+    position: sticky;
+    top: 0;
 }
 
 .logo{
@@ -60,7 +62,7 @@ nav a:hover {
 .banner {
     position: relative;
     text-align: left;
-    background-image: url(../img/img-banner.png);
+    background-image: url(../img/poupanca-porco.png);
     padding: 0;
     height: 600px;
     overflow: hidden;
