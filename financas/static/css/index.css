@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 *{
     margin: 0 ;
@@ -220,3 +221,188 @@ p .contato, .email{
     text-align: start;
     color:white ;
 }
+=======
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0 ;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+    text-decoration: none;
+}
+
+body {
+    background-color: #fff;
+}
+
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f24822;
+    padding: 15px 40px;
+    height: 43px;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nome-logo {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+    margin-right: 0px;
+}
+
+.porquinho-logo {
+    height: 42px;
+    margin-top: 0px;
+    justify-items: start;
+}
+nav a {
+    margin: 0px 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+
+.banner {
+    position: relative;
+    text-align: left;
+    background-image: url(../img/banner.png);
+    padding: 0;
+    overflow: hidden;
+    justify-items: center;
+    height: 691.025px;
+}
+
+.img-banner {
+    width: 1519.2px;
+    max-width: 1519.2px;
+}
+
+.banner h3 {
+    position: relative;
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+    font-size: 70px;
+}
+
+.banner p {
+    top: -10px;
+    position: relative;
+    font-size: 40px;
+}
+
+.subtitulo-banner {
+    position: absolute;;
+    left: 0;
+    width: 100%;
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+.bigbank-sobre {
+    color: #F23E02;
+    font-size: 40px;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    justify-self: start;
+}
+
+.sobre {
+    margin-bottom: 0px; /* garante que o rodapé fique no final */
+    display: flex;
+    flex-direction: column;
+    border-radius: 45px;
+    border: 10px solid #F23E02;
+    justify-self: center;
+    margin-bottom: 100px;
+}
+
+.text-do-sobre{
+    display: flex;
+    flex-direction: row;
+    padding: 3px;
+}
+
+.img-parte-sobre{
+    width: 525px;
+    height: 350px;
+    margin-right: 20px;
+    border-radius: 45px;
+    margin: 15px;
+    align-items: end;
+}
+
+.txt-sobre {
+    text-align: left;
+    color: black;
+    padding: 30px;
+    width: 500px;
+}
+
+
+.importancia{
+    margin-top: 75px;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 45px;
+    border-color: #F23E02;
+}
+
+
+.titulo-importancia {
+    color: #F23E02;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.txt1-importancia {
+    color: black;
+    padding: 15px;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.txt2-importancia{
+    color:black;
+    padding: 15px;
+    justify-content: center;
+    flex-direction: row;
+}
+
+p {
+    font-size: 30px;
+}
+
+.rodape {
+    margin-top: auto;
+    background-color: #F23E02;
+    color: white;
+    padding: 10px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+.rodape nav {
+    display: flex;
+    align-self: flex-start;
+    justify-content: end;
+    flex-direction: row;
+    text-decoration: none;
+}
+>>>>>>> 6b665012a09dc6d520724341fcff7a78aed34d65

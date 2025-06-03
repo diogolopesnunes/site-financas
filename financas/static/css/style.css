@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0 ;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+    text-decoration: none;
+}
+
+.rodape {
+    margin-top: auto;
+    background-color: #F23E02;
+    color: white;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+.rodape nav {
+    display: flex;
+    align-self: flex-start;
+    justify-content: end;
+    flex-direction: row;
+    text-decoration: none;
+}
+
+
+.rodape {
+    position: relative;
+    margin-bottom: 0px;
+}

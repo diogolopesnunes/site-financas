@@ -5,21 +5,39 @@
     font-family: "Montserrat", sans-serif;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Obrigatório para funcionar */
+}
+
+.flash {
+    border: 10px solid #F23E02;
+    border-radius: 45px;
+}
+
+.rodape {
+    margin-bottom: 0px; /* garante que o rodapé fique no final */
+}
+
 .cabecalho {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f24822; 
+    background-color: #f24822;
     padding: 15px 40px;
     height: 43px;
     position: sticky;
     top: 0;
 }
-
+.flash-messages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .logo{
     display: flex;
     align-items: center;
-    gap: 10px;
 }
 
 .nome-logo {
@@ -36,11 +54,6 @@
 
 }
 
-.rodape-nav {
-    display: flex;
-    justify-content: end;
-}
-
 nav a {
     margin: 0px 25px;
     color: white;
@@ -50,47 +63,69 @@ nav a {
 }
 
 nav a:hover {
-    text-decoration: underline;
-}
-
-h2 {
-    font-size: 40px;
-    justify-content: center;
-    margin: 50px;
-}
-
-form {
-    width: 100px;
-    height: 20px;
-    justify-content: center;
-    margin: 30px;
-    border-radius: 20px;
-    box-shadow: lightgrey;
-}
-
-.entrar {
-    background-color: #F23E02;
-    color: white;
     text-decoration: none;
 }
 
-.nao-membro {
-    color: #F23E02;
+section {
+    display: flex;
     justify-content: center;
 }
 
-.rodape{
+section img {
+    width: 450px
+}
+
+form input{
+    border-radius: 100px;
+    width: 280px;
+    height: 20px;
+    padding: 5px;
+    border: none;
+    box-shadow: #A8A8A8 0px 4px 5px;
+}
+
+form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 400px;
+    justify-self: center;
+}
+
+button {
+    background-color: #F23E02FF;
     color: white;
+    border-radius: 20px;
+    padding: 10px;
+    border: none;
+}
+
+a {
+    color:#F23E02FF;
+    text-decoration: none;
+}
+
+h2 {
+    font-size: 60px;
+    padding: 10px;
+}
+
+.rodape {
+    margin-top: auto;
     background-color: #F23E02;
-    padding: 0;
+    color: white;
+    padding-left: 20px;
+    padding-bottom: 10px;
 }
-
-p .home, .transferencia, .login, .cadastro {
-    text-align: right;
-    flex-direction:left;
-}
-
-p .contato, .email{
-    text-align: start;
-    color:white ;
+.rodape nav {
+    display: flex;
+    align-self: flex-start;
+    justify-content: end;
+    flex-direction: row;
+    text-decoration: none;
 }

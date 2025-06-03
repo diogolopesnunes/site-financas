@@ -3,15 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
+<<<<<<< HEAD
 
     <link rel="stylesheet" href="..static/css/login.html">
 
+=======
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/cadastro.css">
+>>>>>>> 6b665012a09dc6d520724341fcff7a78aed34d65
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BigBANK</title>
 </head>
 
 <body>
-
 
     <div class="cabecalho">
 
@@ -20,25 +24,42 @@
             <img class="porquinho-logo" src="static/img/logo-porquinho.png" alt=" Logo do Site ">
         </div>
 
-
         <nav>
+<<<<<<< HEAD
             <a href="/" class="home" > Home </a>
             <a href="/perfil" class="transferencias" > Transferencias </a>
             <a href="/login" class="login" > Login </a>
             <a href="/cadastro" class="cadastro" > Cadastro </a>
+=======
+            <a href="/" class="home"> Home </a>
+            <a href="/inicial_usuario" class="transferencias"> Usuário </a>
+            <a href="/login" class="login"> Login </a>
+            <a href="/cadastro" class="cadastro"> Cadastro </a>
+>>>>>>> 6b665012a09dc6d520724341fcff7a78aed34d65
         </nav>
     </div>
 
 
-    <h2>Login</h2>
 
-    <form>
-        <input type="text" name="cpf" placeholder="CPF" required><br>
+    <form method="POST" action="/login">
+        <h2>Login</h2>
+        <input type="text" name='cpf' placeholder="CPF" required><br>
         <input type="password" name="senha" placeholder="Senha" minlength="8" required><br>
         <button class="entrar" type="submit">Entrar</button>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
     </form>
 
-        <a class="nao-membro" href="">Não é membro? cadastra-se</a>
+
+
 
     <footer class="rodape">
 
@@ -47,7 +68,7 @@
 
         <nav class="rodape-nav">
             <a href="/" class="home" > Home </a>
-            <a href="/perfil" class="transferencias" > Transferencias </a>
+            <a href="/perfil" class="transferencias" > Usuário </a>
             <a href="/login" class="login" > Login </a>
             <a href="/cadastro" class="cadastro" > Cadastro </a>
         </nav>
