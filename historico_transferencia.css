@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0 ;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+    text-decoration: none;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f24822;
+    padding: 15px 40px;
+    height: 43px;
+}
+
+.logo{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+}
+
+.nome-logo {
+        font-size: 24px;
+        color: white;
+        font-weight: bold;
+        margin-right: 0px;
+        margin-top: 0px;
+        justify-items: start;
+}
+
+.porquinho-logo {
+    height: 42px;
+    margin-top: 0px;
+    justify-items: start;
+}
+
+h2 {
+    font-size: 60px;
+    padding: 10px;
+}
+
+.titulo {
+  display: flex;
+  justify-self: center;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 30px;
+  margin-left: 30px;
+  
+}
+
+.saldo-total {
+  justify-self: center;
+  font-size: 30px;
+
+}
+
+nav a {
+        margin: 0px 25px;
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 18px;
+        text-decoration: none;
+}
+
+.container {
+    font-weight: normal;
+}
+
+table {
+      margin-left: 50px;
+      min-width: 50%;
+      justify-content: center;
+
+    }
+
+th {
+
+  background-color: #F23E02;
+  color: white;
+  border-color: black;
+}
+
+td {
+
+  background-color: #F2F2F2;
+  color: black;
+  border-color: black;
+}
+
+td, th {
+
+    font-size: 30px;
+    font-weight: normal;
+    padding: 10px;
+    text-align: center;
+}
+
+.editar-excluir {
+    min-width: 0px;
+    border: none;
+    justify-self: end;
+    display: flex;
+    margin-right: 20px;  
+}
+
+
+.saldo {
+      font-weight: bold;
+    }
+
+.actions {
+      display: flex;
+      gap: 10px;
+    }
+
+
+
+.botao {
+    display: flex;
+    bottom: 0px;
+    background-color: #F23E02;
+    color: white;
+    border-radius: 20px;
+    padding: 10px;
+    border: none;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    width: 15%;
+}
+
+.botao-pequeno-lapis, .botao-pequeno-lixo {
+    display: flex;
+    bottom: 0px;
+    padding: 10px;
+    border: none;
+    width: 30px;
+    height: 30px;
+}
+
+.botao-pequeno-lapis {
+    margin-right: 50px;
+}
+
+.rodape {
+    margin-top: auto;
+    background-color: #F23E02;
+    color: white;
+}
