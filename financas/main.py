@@ -1,70 +1,66 @@
-from flask import Flask, request, redirect, render_template, flash
+from flask import Flask, request, redirect, render_template, flash, session
 
-# Inicializa a aplicação Flask
 app = Flask(__name__)
-app.secret_key = "senhanadasecreta"  # Chave secreta para sessões e mensagens flash
+app.secret_key = "senhanadasecreta"
 
-# Listas para armazenar usuários e transferências (simulando um banco de dados)
 usuarios = []
 transferencias = []
 
-# Rota principal que renderiza a página inicial
+
+
 @app.route("/")
 def home():
     return render_template("index.html")
 
-# Rota para cadastro de usuários
+
 @app.route("/cadastro", methods=["GET", "POST"])
 def cadastrar():
-    if request.method == "POST":  # Processa o formulário quando enviado
-        # Obtém os dados do formulário
-        nome = request.form.get("nome")
-        tel = request.form.get("tel")
-        cpf = request.form.get("cpf")
-        email = request.form.get("email")
-        senha = request.form.get("senha")
-        confirm_senha = request.form.get("confirm_senha")
+    if request.method == "POST":  # Faz o código rodar caso o usuário preencha e envie as informações no formulário
+        nome = request.form.get("nome")  # Informação do nome
+        tel = request.form.get("tel")  # Informação do telefone
+        cpf = request.form.get("cpf")  # Informação do cpf
+        email = request.form.get("email")  # Informação do email
+        senha = request.form.get("senha")  # Informação da senha
+        confirm_senha = request.form.get("confirm_senha")  # Informação da confirmação de senha
+        maiuscula = False  # Variavel que diz se tem letra maiuscula
+        minuscula = False  # Variavel que diz se tem letra minuscula
+        numero = False  # Variavel que diz se tem numero
+        simbolo = False  # Variavel que diz se tem caractere especial
 
-        # Valida se todos os campos foram preenchidos
-        if not all([nome, tel, cpf, email, senha, confirm_senha]):
-            flash("Preencha todos os campos!")
+        if not all([nome, tel, cpf, email, senha, confirm_senha]):  # Caso não preencha todos os campos
+            flash("Preencha todos os campos!")  # Essa mensagem aparece para o usuário
             return redirect("/cadastro")
 
-        # Verifica se CPF já está cadastrado
         for u in usuarios:
             if u['cpf'] == cpf:
                 flash("Cpf já cadastrado")
                 return redirect("/cadastro")
 
-        # Verifica se as senhas coincidem
-        if senha != confirm_senha:
-            flash("Senhas não coincidem!")
+        if senha != confirm_senha:  # Caso a senha não for igual a confirmação
+            flash("Senhas não coincidem!")  # Essa mensagem aparece para o usuário
+            return redirect("/cadastro")
+        
+        if len(senha) < 8:  # Ou qualquer tamanho mínimo que você queira
+            flash("A senha deve ter pelo menos 8 caracteres")
             return redirect("/cadastro")
 
-        # Variáveis para validação da senha
-        maiuscula = False
-        minuscula = False
-        numero = False
-        simbolo = False
-
-        # Validação da complexidade da senha
         for c in senha:
-            if c.upper():
+            if c.isupper():  # Verifica se tem letra maiuscula na senha
                 maiuscula = True
-            if c.lower():
+
+            elif c.islower():  # Verifica se tem letra minuscula na senha
                 minuscula = True
-            if c.isdigit():
+
+            elif c.isdigit():  # Verifica se tem numero na senha
                 numero = True
-            if c.isalnum():
+
+            elif not c.isalnum() and not c.isspace():  # Verifica se tem caractere especial na senha
                 simbolo = True
 
-        print(senha)  # Debug: mostra a senha no console (não recomendado para produção)
+        if not (maiuscula and minuscula and numero and simbolo):
+            flash("A senha deve conter pelo menos uma letra maiúscula, uma minúscula, um número e um caractere especial")
+            return redirect("/cadastro")
 
-        # Verifica se a senha atende aos requisitos mínimos
-        if not (maiuscula or minuscula or numero or simbolo):
-            flash("A senha deve conter pelo menos uma letra maiuscula e minuscula, um número e um caractere especial")
-
-        # Cria o dicionário com os dados do usuário
         usuario = {
             "nome": nome,
             "tel": tel,
@@ -72,27 +68,25 @@ def cadastrar():
             "email": email,
             "senha": senha
         }
-
-        # Adiciona o usuário à lista e redireciona para login
         usuarios.append(usuario)
         flash("Cadastro realizado com sucesso!")
-        print(usuarios)  # Debug: mostra todos os usuários no console
+        print(usuarios)
         return redirect("/login")
 
     return render_template("cadastro.html")
 
-# Rota para login de usuários
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         cpf = request.form['cpf']
         senha = request.form['senha']
 
-        # Verifica as credenciais do usuário
         for u in usuarios:
             if u['cpf'] == cpf:
                 if u['senha'] == senha:
                     flash('Usuário logado com sucesso')
+                    session['usuario_cpf'] = cpf  # Armazena o CPF do usuário na sessão
                     print(f"Usuário {u['nome']} logado com sucesso")
                     return redirect('/inicial_usuario')
                 else:
@@ -102,129 +96,176 @@ def login():
         return redirect('/login')
     return render_template('login.html')
 
-# Rota para página inicial do usuário após login
+@app.route("/logout")
+def logout():
+    session.pop('_flashes', None)
+    session.pop('usuario_cpf', None)
+    flash('Você foi deslogado com sucesso')
+    return redirect('/')
+
 @app.route("/inicial_usuario")
 def inicial_usuario():
-    return render_template("inicial_usuario.html")
+    if 'usuario_cpf' not in session:
+        flash('Por favor, faça login primeiro')
+        return redirect('/login')
+    
+    usuario_atual = next((u for u in usuarios if u['cpf'] == session['usuario_cpf']), None)
+    
+    if not usuario_atual:
+        flash('Usuário não encontrado')
+        return redirect('/login')
+    
+    return render_template("inicial_usuario.html", usuario=usuario_atual)
 
-# Rota para edição de perfil do usuário
-@app.route("/editar_perfil")
+
+@app.route("/editar_perfil", methods=["GET", "POST"])
 def editar():
+    # Verifica se o usuário está logado
+    if 'usuario_cpf' not in session:
+        flash('Por favor, faça login primeiro')
+        return redirect('/login')
+    
+    # Encontra o usuário atual
+    usuario_atual = None
+    for u in usuarios:
+        if u['cpf'] == session['usuario_cpf']:
+            usuario_atual = u
+            break
+    
+    if not usuario_atual:
+        flash('Usuário não encontrado')
+        return redirect('/login')
+
     if request.method == "POST":
-        # Obtém os dados do formulário de edição
         nome = request.form.get("nome")
         tel = request.form.get("tel")
-        cpf = request.form.get("cpf")
         email = request.form.get("email")
         senha = request.form.get("senha")
         confirm_senha = request.form.get("confirm_senha")
 
-        # Validação dos campos
-        if not all([nome, tel, cpf, email, senha, confirm_senha]):
+        if not all([nome, tel, email, senha, confirm_senha]):
             flash("Preencha todos os campos!")
             return redirect("/editar_perfil")
-
-        # Verifica se CPF já existe (exceto para o próprio usuário)
-        for u in usuarios:
-            if u['cpf'] == cpf:
-                flash("Cpf já cadastrado")
-                return redirect("/editar_perfil")
 
         if senha != confirm_senha:
             flash("Senhas não coincidem!")
             return redirect("/editar_perfil")
+        
+        if len(senha) < 8:
+            flash("A senha deve ter pelo menos 8 caracteres")
+            return redirect("/editar_perfil")
 
-        # Validação da senha (mesma lógica do cadastro)
-        maiuscula = False
-        minuscula = False
-        numero = False
-        simbolo = False
+        # Verificação de complexidade da senha
+        maiuscula = any(c.isupper() for c in senha)
+        minuscula = any(c.islower() for c in senha)
+        numero = any(c.isdigit() for c in senha)
+        simbolo = any(not c.isalnum() and not c.isspace() for c in senha)
 
-        for c in senha:
-            if c.upper():
-                maiuscula = True
-            if c.lower():
-                minuscula = True
-            if c.isdigit():
-                numero = True
-            if c.isalnum():
-                simbolo = True
-
-        print(senha)
-
-        if not (maiuscula or minuscula or numero or simbolo):
-            flash("A senha deve conter pelo menos uma letra maiuscula e minuscula, um número e um caractere especial")
+        if not (maiuscula and minuscula and numero and simbolo):
+            flash("A senha deve conter pelo menos uma letra maiúscula, uma minúscula, um número e um caractere especial")
+            return redirect("/editar_perfil")
 
         # Atualiza os dados do usuário
-        for u in usuarios:
-            if u["cpf"] == cpf:
-                u["nome"] = nome
-                u["tel"] = tel
-                u["cpf"] = cpf
-                u["email"] = email
-                u["senha"] = senha
-                flash("Edição realizada com sucesso!")
-                print(usuarios)
-                return redirect("/inicial_perfil")
-            
-            flash("Usuário não encontrado")
-            return redirect("/editar_perfil")
-        
-    return render_template("editar_perfil.html")
+        usuario_atual['nome'] = nome
+        usuario_atual['tel'] = tel
+        usuario_atual['email'] = email
+        usuario_atual['senha'] = senha
 
-# Rota para exibir histórico de transferências
+        flash("Perfil atualizado com sucesso!")
+        return redirect("/inicial_usuario")
+        
+    return render_template("editar_perfil.html", usuario=usuario_atual)
+
+
 @app.route("/historico_transferencia")
 def historico_transferencia():
-    total = sum(t[3] for t in transferencias)  # Calcula o total das transferências
+    total = sum(t[3] for t in transferencias)
     return render_template("historico_transferencia.html", transferencias=transferencias, total=total)
 
-# Rota para adicionar nova transferência
+
 @app.route('/adicionar_transferencia', methods=['GET', 'POST'])
 def adicionar_transferencia():
     if request.method == 'POST':
-        # Obtém dados da transferência e adiciona à lista
-        data = request.form['data']
+        data_sem_formatar = request.form['data']
         entrada_saida = request.form['entrada_saida']
         valor = float(request.form['valor'])
-        codigo = len(transferencias) + 1  # Gera um código único
+        codigo = len(transferencias) + 1
+        data_formatando = data_sem_formatar.split('-')
+        data = f"{data_formatando[2]}/{data_formatando[1]}/{data_formatando[0]}"
         transferencias.append([codigo, data, entrada_saida, valor])
         return redirect('/historico_transferencia')  
     return render_template('adicionar_transferencia.html')  
 
-# Rota para editar transferência existente
+
 @app.route('/editar_transferencia/<int:codigo>', methods=['GET', 'POST'])
 def editar_transferencia(codigo):
-    if request.method == 'POST':
-        global transferencias
-        transferencia = transferencias[codigo]
-        # Atualiza os dados da transferência
-        transferencia[1] = request.form['data']
-        transferencia[2] = request.form['entrada_saida']
-        transferencia[3] = request.form["valor"]
-        flash("Transferência editada com sucesso!")
+    global transferencias
+    transferencia = None
+    
+    # 1. Encontra a transferência pelo código
+    for t in transferencias:
+        if t[0] == codigo:
+            transferencia = t
+            break
+    
+    if not transferencia:
+        flash("Transferência não encontrada!")
         return redirect('/historico_transferencia')
 
-    return render_template('editar_transferencia.html', transferencia=transferencia)
+    if request.method == 'POST':
+        data_sem_formatar = request.form['data']
+        entrada_saida = request.form['entrada_saida']
+        valor = float(request.form['valor'])
+        
+        try:
+            # Formata a data (DD/MM/YYYY → YYYY-MM-DD)
+            data_formatando = data_sem_formatar.split('-')
+            data = f"{data_formatando[2]}/{data_formatando[1]}/{data_formatando[0]}"
+        except:
+            flash("Formato de data inválido!")
+            return redirect(f'/editar_transferencia/{codigo}')
+        
+        # 2. Atualiza a transferência existente (sem index)
+        for t in transferencias:
+            if t[0] == codigo:
+                t[1] = data
+                t[2] = entrada_saida
+                t[3] = valor
+                break
+        
+        flash("Transferência editada com sucesso!")
+        return redirect('/historico_transferencia')
+    
+    # Prepara a data para o formulário (YYYY-MM-DD)
+    data_input = ""
+    if transferencia[1].count('/') == 2:
+        try:
+            day, month, year = transferencia[1].split('/')
+            data_input = f"{year}-{month}-{day}"
+        except:
+            data_input = ""
+    
+    return render_template('editar_transferencia.html', 
+                         codigo=codigo, 
+                         data=data_input, 
+                         entrada_saida=transferencia[2], 
+                         valor=transferencia[3])
 
-# Rota para apagar transferência
 @app.route('/apagar_transferencia/<int:codigo>')
 def apagar_transferencia(codigo):
     global transferencias
-    # Remove a transferência com o código especificado
     transferencias = [t for t in transferencias if t[0] != codigo]
     return redirect('/historico_transferencia') 
 
-# Rota para cálculo de reserva de emergência
+
 @app.route("/reserva_emergencia", methods=["GET", "POST"])
 def reserva_emergencia():
     if request.method == "POST":
-        # Obtém os dados para cálculo da reserva
-        media = float(request.form.get("media"))
-        meses = float(request.form.get("meses"))
+        media = float(request.form.get("media"))  # Informação da média de gastos mensais
+        meses = float(request.form.get("meses"))  # Informação do número de meses para a reserva
         prazo = float(request.form.get("prazo"))
 
         if all([media, meses, prazo]):
-            # Calcula a reserva total e mensal
             reserva_total = media * meses
             reserva_mensal_recomendada = reserva_total / prazo
             flash(f"Reserva de emergência recomendada: R${reserva_total:.2f} (R${reserva_mensal_recomendada:.2f} por mês)")
@@ -234,6 +275,7 @@ def reserva_emergencia():
     
     return render_template("reserva_emergencia.html")
 
-# Inicia a aplicação quando o script é executado diretamente
+
+
 if __name__ == "__main__":
     app.run(debug=True)

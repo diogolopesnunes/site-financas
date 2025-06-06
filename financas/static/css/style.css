@@ -26,3 +26,21 @@
     position: relative;
     margin-bottom: 0px;
 }
+
+.flash-messages {
+    padding: 10px;
+    text-align: center;
+    color: #F23E02;
+    width: 280px;
+    margin-top: 30px;
+    animation: flash-out 5s ease 7s forwards; /* <-- Aqui aplica a animação */
+}
+
+@keyframes flash-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

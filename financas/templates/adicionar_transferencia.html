@@ -25,6 +25,9 @@
             <a href="/inicial_usuario" class="transferencias"> Usuário </a>
             <a href="/login" class="login"> Login </a>
             <a href="/cadastro" class="cadastro"> Cadastro </a>
+            {% if 'usuario_cpf' in session %}
+            <a href="/logout" class="deslogar">Deslogar</a>
+            {% endif %}
         </nav>
     </div>
 

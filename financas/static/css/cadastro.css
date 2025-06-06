@@ -1,127 +1,3 @@
-<<<<<<< HEAD
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-*{
-    margin: 0 ;
-    padding: 0;
-    font-family: "Montserrat", sans-serif;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Obrigatório para funcionar */
-}
-
-.rodape {
-    margin-bottom: 0px; /* garante que o rodapé fique no final */
-}
-
-.cabecalho {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f24822;
-    padding: 15px 40px;
-    height: 43px;
-}
-.flash-messages {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.logo{
-    display: flex;
-    align-items: center;
-}
-
-.nome-logo {
-    font-size: 24px;
-    color: white;
-    font-weight: bold;
-    margin-right: 0px;
-}
-
-.porquinho-logo {
-    height: 42px;
-    margin-top: 0px;
-    justify-items: start;
-
-}
-
-nav a {
-    margin: 0px 25px;
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 18px;
-}
-
-nav a:hover {
-    text-decoration: none;
-}
-
-section {
-    display: flex;
-    justify-content: center;
-}
-
-section img {
-    width: 450px
-}
-
-form input{
-    border-radius: 100px;
-    width: 280px;
-    height: 20px;
-    padding: 5px;
-    border: none;
-    box-shadow: #A8A8A8 0px 4px 5px;
-}
-
-form {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 400px;
-    justify-self: center;
-}
-
-button {
-    background-color: #F23E02FF;
-    color: white;
-    border-radius: 20px;
-    padding: 10px;
-    border: none;
-}
-
-a {
-    color:#F23E02FF;
-    text-decoration: none;
-}
-
-h2 {
-    font-size: 60px;
-    padding: 10px;
-}
-
-.rodape {
-    margin-top: auto;
-    background-color: #F23E02;
-    color: white;
-    padding-left: 20px;
-}
-.rodape nav {
-    display: flex;
-    align-self: flex-start;
-    justify-content: end;
-    flex-direction: row;
-    text-decoration: none;
-=======
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 *{
     margin: 0 ;
@@ -142,7 +18,7 @@ body {
     color: #F23E02;
     width: 280px;
     margin-top: 30px;
-    animation: flash-out 1s ease 2s forwards; /* <-- Aqui aplica a animação */
+    animation: flash-out 5s ease 7s forwards; /* <-- Aqui aplica a animação */
 }
 
 @keyframes flash-out {
@@ -214,7 +90,7 @@ form input{
     height: 20px;
     padding: 5px;
     border: none;
-    box-shadow: #A8A8A8 0px 4px 5px;
+    box-shadow: #A8A8A8 0px 0px 10px;
 }
 
 form {
@@ -230,12 +106,25 @@ form {
     justify-self: center;
 }
 
-button {
+button, .cancelar {
+    font-size: 15px;
     background-color: #F23E02FF;
     color: white;
     border-radius: 20px;
     padding: 10px;
     border: none;
+}
+
+button {
+    margin-bottom: 20px;
+    width: 280px;
+}
+
+.cancelar {
+    text-align: center;
+    margin-left: auto; 
+    margin-right: auto;
+    background-color: #A8A8A8;
 }
 
 a {
@@ -246,5 +135,4 @@ a {
 h2 {
     font-size: 60px;
     padding: 10px;
->>>>>>> 6b665012a09dc6d520724341fcff7a78aed34d65
 }

@@ -18,7 +18,7 @@ a {
 }
 
 .flash {
-    border: 10px solid #F23E02;
+    border: 10px solid #f24822;
     border-radius: 45px;
 }
 
@@ -43,10 +43,40 @@ a {
 .botoes-pag-usuario {
     display: flex;
     justify-content: space-around;
-    margin-top: 5%;
+    margin-top: 30px;
     text-decoration: none;
     font-size: 30px;
-    
+}
+
+.botao_perfil {
+    background-color:#fff;
+    box-shadow: #A8A8A8 0px 0px 10px;
+    border-radius: 45px;
+    padding: 20px;
+    align-self: center;
+    max-height: 175px;
+    max-width: 200px;
+    min-width: 200px;
+    display: flex;          /* Adiciona flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;    /* Centraliza verticalmente */
+    flex-direction: column; /* Organiza os itens em coluna */
+    min-height: 350px;
+    margin-bottom: 30px;
+}
+
+.imagem-card {
+    text-align: center;
+}
+
+a img {
+    margin: 0 auto;    /* Centraliza a imagem */
+    display: block;
+    max-height: 128px;
+}
+
+.imagem-card img {
+    margin-bottom: 70px;
 }
 
 h2 {

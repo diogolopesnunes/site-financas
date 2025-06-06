@@ -17,7 +17,7 @@
 
         <div class="logo">
             <h2 class="nome-logo"> BIGBANK </h2>
-            <img class="porquinho-logo" src="static/img/logo-porquinho.png" alt=" Logo do Site ">
+            <img class="porquinho-logo" src="../static/img/logo-porquinho.png" alt=" Logo do Site ">
         </div>
 
         <nav>
@@ -25,23 +25,28 @@
             <a href="/inicial_usuario" class="transferencias"> Usuário </a>
             <a href="/login" class="login"> Login </a>
             <a href="/cadastro" class="cadastro"> Cadastro </a>
+            {% if 'usuario_cpf' in session %}
+            <a href="/logout" class="deslogar">Deslogar</a>
+            {% endif %}
         </nav>
     </div>
 
 
     <div>
 
-        <h2> Editar Transferencias </h2>
+        <form method="post" action="/editar_transferencia/{{ codigo }}">
+        
+            <h2 class="titulo" >Editar Transferencias</h2>
 
-        <form method="post" action="/editar-transferencia">
-
-            <input type="date" name="Data" placeholder="Insira a Data" required><br>
+            <input type="date" name="data" placeholder="Insira a Data" value="{{ data }}" required><br>
             
-            <input type="text" name="Origem/Saída" placeholder="Insira a Origem ou Saída" required><br>
+            <input type="text" name="entrada_saida" placeholder="Insira a Origem da Entrada/Saída" value="{{ entrada_saida }}" required><br>
 
-            <input type="password" name="Valor" placeholder="Insira o Valor" required><br>
+            <input type="number " name="valor" placeholder="Insira o Valor Positivo ou Negativo" value="{{ valor }}" required><br>
 
             <button type="submit">Adicionar</button>
+
+            <a href="/historico_transferencia" class="cancelar">Cancelar</a>
         </form>
     </div>
 

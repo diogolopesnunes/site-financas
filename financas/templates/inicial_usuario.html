@@ -25,27 +25,30 @@
             <a href="/inicial_usuario" class="transferencias"> Usuário </a>
             <a href="/login" class="login"> Login </a>
             <a href="/cadastro" class="cadastro"> Cadastro </a>
+            {% if 'usuario_cpf' in session %}
+            <a href="/logout" class="deslogar">Deslogar</a>
+            {% endif %}
         </nav>
     </div>
 
 
 
     <div class="nome-de-usuario">
-        <h2 class="username">Murilo</h2>
+        <h2 class="username">{{ usuario.nome }}</h2>
         <a class="config" href="/editar_perfil"> <img src="../static/img/img-botao-configurar-perfil.png" alt="Engrenagem de Editar Perfil"> </a>
     </div>
 
 
     <div class="botoes-pag-usuario">
         <div class="botao_perfil">
-            <a href="/reserva_emergencia"><img src="../static/img/img-reserve.png" alt="Img-reserva de Emergencia"><p class="ultilidade">Reserva De Emergência</p></a>
+            <a class="imagem-card" href="/reserva_emergencia"><img src="../static/img/img-reserve.png" alt="Img-reserva de Emergencia"><p class="utilidade">Reserva de <br> Emergência</p></a>
 
         </div>
         <div class="botao_perfil">
-            <a href="{{ url_for('historico_transferencia') }}"> <img src="../static/img/bank-account.png" alt="Img Histórico de trasferência"><p class="ultilidade">Histórico De Transferências</p></a>
+            <a class="imagem-card" href="{{ url_for('historico_transferencia') }}"> <img src="../static/img/bank-account.png" alt="Img Histórico de trasferência"><p class="utilidade">Histórico de <br> Transferências</p></a>
         </div>
         <div class="botao_perfil">
-            <a href="/adicionar_transferencia"> <img src="../static/img/money-transfer.png" alt="Img Adicionar Transferencias"><p class="ultilidade">Adicionar Transferências</p></a>
+            <a class="imagem-card" href="/adicionar_transferencia"> <img src="../static/img/money-transfer.png" alt="Img Adicionar Transferencias"><p class="utilidade">Adicionar <br> Transferências</p></a>
         </div>
     </div>
 
