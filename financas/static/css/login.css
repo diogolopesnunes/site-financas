@@ -12,7 +12,7 @@ body {
 }
 
 .flash {
-    border: 10px solid #F23E02;
+    border: 10px solid var(--cor-principal);
     border-radius: 45px;
 }
 
@@ -24,7 +24,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f24822;
+    background-color: var(--cor-principal);
     padding: 15px 40px;
     height: 43px;
     position: sticky;
@@ -98,7 +98,7 @@ form {
 }
 
 button {
-    background-color: #F23E02FF;
+    background-color: var(--cor-principal);
     color: white;
     border-radius: 20px;
     padding: 10px;
@@ -106,7 +106,7 @@ button {
 }
 
 a {
-    color:#F23E02FF;
+    color:var(--cor-principal);
     text-decoration: none;
 }
 
@@ -117,7 +117,7 @@ h2 {
 
 .rodape {
     margin-top: auto;
-    background-color: #F23E02;
+    background-color: var(--cor-principal);
     color: white;
     padding-left: 20px;
     padding-bottom: 10px;

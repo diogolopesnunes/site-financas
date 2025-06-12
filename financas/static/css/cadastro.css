@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 *{
     margin: 0 ;
     padding: 0;
@@ -15,7 +16,7 @@ body {
 .flash-messages {
     padding: 10px;
     text-align: center;
-    color: #F23E02;
+    color: var(--cor-principal);
     width: 280px;
     margin-top: 30px;
     animation: flash-out 5s ease 7s forwards; /* <-- Aqui aplica a animação */
@@ -34,7 +35,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f24822;
+    background-color: var(--cor-principal);
     padding: 15px 40px;
     height: 43px;
 }
@@ -94,6 +95,9 @@ form input{
 }
 
 form {
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.3);
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -101,6 +105,8 @@ form {
     align-items: center;
     padding: 20px 20px;
     margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
     width: 100%;
     max-width: 400px;
     justify-self: center;
@@ -108,7 +114,7 @@ form {
 
 button, .cancelar {
     font-size: 15px;
-    background-color: #F23E02FF;
+    background-color: var(--cor-principal);
     color: white;
     border-radius: 20px;
     padding: 10px;
@@ -128,7 +134,7 @@ button {
 }
 
 a {
-    color:#F23E02FF;
+    color: var(--cor-principal);
     text-decoration: none;
 }
 

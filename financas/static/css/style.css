@@ -1,4 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --cor-principal: #3A6351;
+    --cor-secundaria: #1F3B73;
+    --cinza: #A8A8A8;
+    --branco: #FFFFFF;
+}
+
 *{
     margin: 0 ;
     padding: 0;
@@ -8,7 +16,7 @@
 
 .rodape {
     margin-top: auto;
-    background-color: #F23E02;
+    background-color: var(--cor-principal);
     color: white;
     padding-left: 20px;
     padding-bottom: 10px;
@@ -30,7 +38,7 @@
 .flash-messages {
     padding: 10px;
     text-align: center;
-    color: #F23E02;
+    color: var(--cor-principal);
     width: 280px;
     margin-top: 30px;
     animation: flash-out 5s ease 7s forwards; /* <-- Aqui aplica a animação */

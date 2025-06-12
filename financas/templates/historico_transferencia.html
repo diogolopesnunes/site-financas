@@ -5,125 +5,124 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/historico_transferencia.css">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BigBANK</title>
+    <title>BigBANK - Histórico de Transferências</title>
 </head>
 
-<div>
-
-
-
+<body>
     <div class="cabecalho">
-
         <div class="logo">
-            <h2 class="nome-logo"> BIGBANK </h2>
-            <img class="porquinho-logo" src="../static/img/logo-porquinho.png" alt=" Logo do Site ">
+            <h2 class="nome-logo">BIGBANK</h2>
+            <img class="porquinho-logo" src="../static/img/logo-porquinho.png" alt="Logo do Site">
         </div>
 
         <nav>
-            <a href="/" class="home"> Home </a>
-            <a href="/inicial_usuario" class="transferencias"> Usuário </a>
-            <a href="/login" class="login"> Login </a>
-            <a href="/cadastro" class="cadastro"> Cadastro </a>
-            {% if 'usuario_cpf' in session %}
-            <a href="/logout" class="deslogar">Deslogar</a>
+            <a href="/" class="home">Home</a>
+            <a href="/inicial_usuario" class="transferencias">Usuário</a>
+            {% if 'usuario_cpf' not in session %}
+                <a href="/login" class="login">Login</a>
+                <a href="/cadastro" class="cadastro">Cadastro</a>
+            {% else %}
+                <a href="/logout" class="deslogar">Deslogar</a>
             {% endif %}
         </nav>
     </div>
 
-    <div class="titulo">
-        <h2>Histórico de transferências</h2>    
+    <div class="conteudo-principal">
+        <div class="titulo">
+            <h2>Histórico de transferências</h2>    
+        </div>
+        
+        <div class="saldo-total">
+            <div>Saldo Total</div>
+            <p>R$ {{ '%.2f'|format(total) }}</p>
+        </div>
+
+        <div class="container">
+            <h3>Entradas</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="th-1">Data</th>
+                        <th class="th-2">Descrição</th>
+                        <th class="th-3">Valor</th>
+                        <th class="th-4">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entrada in entradas %}
+                    <tr>
+                        <td class="th-1">{{ entrada['data'] }}</td>
+                        <td class="th-2">{{ entrada.get('descricao', '') }}</td>
+                        <td class="th-3">R$ {{ '%.2f'|format(entrada['valor']) }}</td>
+                        <td class="editar-excluir">
+                            <a class="botao-pequeno-lapis" href="/editar_transferencia/{{ entrada['codigo'] }}">
+                                <img src="{{ url_for('static', filename='img/lapis.png') }}" alt="Editar">
+                            </a>
+                            <a class="botao-pequeno-lixo" href="/apagar_transferencia/{{ entrada['codigo'] }}">
+                                <img src="{{ url_for('static', filename='img/lixo.png') }}" alt="Excluir">
+                            </a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4">Nenhuma entrada registrada</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container">
+            <h3>Saídas</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="th-1">Data</th>
+                        <th class="th-2">Descrição</th>
+                        <th class="th-3">Valor</th>
+                        <th class="th-4">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for saida in saidas %}
+                    <tr>
+                        <td class="th-1">{{ saida['data'] }}</td>
+                        <td class="th-2">{{ saida.get('descricao', '') }}</td>
+                        <td class="th-3">R$ {{ '%.2f'|format(saida['valor']) }}</td>
+                        <td class="editar-excluir">
+                            <a class="botao-pequeno-lapis" href="/editar_transferencia/{{ saida['codigo'] }}">
+                                <img src="{{ url_for('static', filename='img/lapis.png') }}" alt="Editar">
+                            </a>
+                            <a class="botao-pequeno-lixo" href="/apagar_transferencia/{{ saida['codigo'] }}">
+                                <img src="{{ url_for('static', filename='img/lixo.png') }}" alt="Excluir">
+                            </a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4">Nenhuma saída registrada</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <a class="botao" href="/adicionar_transferencia">+ Adicionar Transferência</a>
     </div>
-    
-    <div class="saldo-total">
-        <div> Saldo Total</div>
-        <p>R$ {{ '%.2f'|format(total) }}</p>
-    </div>
-
-    <div class="container">
-        <h3>Entradas</h3>
-        <table>
-            <tr>
-                <th class="th-1">Data</th>
-                <th class="th-2">Origem</th>
-                <th class="th-3">Valor</th>
-                <th class="th-4">Ações</th>
-            </tr>
-            {% for transferencia in transferencias %}
-                {% if transferencia[3] > 0 %}
-                <tr>
-                    <td class="th-1">{{ transferencia[1] }}</td>
-                    <td class="th-2">{{ transferencia[2] }}</td>
-                    <td class="th-3">{{ transferencia[3] }}</td>
-                    <td class="editar-excluir">
-                        <a class="botao-pequeno-lapis" href="/editar_transferencia/{{ transferencia[0] }}">
-                            <img src="{{ url_for('static', filename='img/lapis.png') }}" alt="editar">
-                        </a>
-                        <a class="botao-pequeno-lixo" href="/apagar_transferencia/{{ transferencia[0] }}">
-                            <img src="{{ url_for('static', filename='img/lixo.png') }}">
-                        </a>
-                    </td>
-                </tr>
-                {% endif %}
-            {% endfor %}
-        </table>
-    </div>
-
-    <div class="container">
-        <h3>Saidas</h3>
-        <table>
-            <tr>
-                <th class="th-1">Data</th>
-                <th class="th-2">Origem</th>
-                <th class="th-3">Valor</th>
-                <th class="th-4">Ações</th>
-
-            </tr>
-            {% for transferencia in transferencias %}
-                {% if transferencia[3] < 0 %}
-                <tr>
-                    <td class="th-1">{{ transferencia[1] }}</td>
-                    <td class="th-2">{{ transferencia[2] }}</td>
-                    <td class="th-3">{{ transferencia[3] }}</td>
-                    <td class="editar-excluir">
-                        <a class="botao-pequeno-lapis" href="/editar_transferencia/{{ transferencia[0] }}">
-                            <img src="{{ url_for('static', filename='img/lapis.png') }}">
-                        </a>
-                        <a class="botao-pequeno-lixo" href="/apagar_transferencia/{{ transferencia[0] }}">
-                            <img src="{{ url_for('static', filename='img/lixo.png') }}">
-                        </a>
-                    </td>
-                </tr>
-                {% endif %}
-            {% endfor %}
-        </table>
-    </div>
-
-    
-
-    <a class="botao" href="/adicionar_transferencia">+ Adicionar Transferencia</a>
-
-</div>
     
     <footer class="rodape">
-
-
-        <h2 class="nome-logo"> BIGBANK </h2>
-
+        <h2 class="nome-logo">BIGBANK</h2>
         <nav class="rodape-nav">
-            <a href="/" class="home" > Home </a>
-            <a href="/perfil" class="transferencias" > Usuário </a>
-            <a href="/login" class="login" > Login </a>
-            <a href="/cadastro" class="cadastro" > Cadastro </a> 
+            <a href="/" class="home">Home</a>
+            <a href="/inicial_usuario" class="transferencias">Usuário</a>
+            {% if 'usuario_cpf' not in session %}
+                <a href="/login" class="login">Login</a>
+                <a href="/cadastro" class="cadastro">Cadastro</a>
+            {% endif %}
         </nav>
-
-        <p class="contato"> Contato: (18) 99139-1404</p>
-        <p class="email"> Email: contato@bigbank.com.br</p>
-        
-
+        <p class="contato">Contato: (18) 99139-1404</p>
+        <p class="email">Email: contato@bigbank.com.br</p>
     </footer>
-
-
 </body>
 </html>
