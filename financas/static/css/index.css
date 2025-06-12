@@ -76,19 +76,32 @@ nav a:hover {
 }
 
 .banner p {
+    width: 175%;
     top: -10px;
     position: relative;
-    font-size: 40px;
 }
 
-.subtitulo-banner {
-    position: absolute;;
+.texto-banner {
+    position: absolute;
+    color: white;
+}
+
+.titulo-banner {
+    position: absolute;
     left: 0;
-    width: 100%;
-    font-size: 24px;
+    font-size: 70px;
     color: white;
     text-align: center;
     padding: 30px;
+}
+
+.subtitulo-banner {
+    position: absolute;
+    left: 0;
+    font-size: 40px;
+    color: white;
+    text-align: center;
+    padding-left: 30px;
 }
 
 

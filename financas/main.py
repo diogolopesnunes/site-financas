@@ -66,8 +66,10 @@ def cadastrar():
             "tel": tel,
             "cpf": cpf,
             "email": email,
-            "senha": senha
+            "senha": senha,
+            "transferencias": []
         }
+
         usuarios.append(usuario)
         flash("Cadastro realizado com sucesso!")
         print(usuarios)
@@ -179,32 +181,66 @@ def editar():
 
 @app.route("/historico_transferencia")
 def historico_transferencia():
-    total = sum(t[3] for t in transferencias)
-    return render_template("historico_transferencia.html", transferencias=transferencias, total=total)
-
+    if 'usuario_cpf' not in session:
+        flash('Por favor, faça login primeiro')
+        return redirect('/login')
+    
+    usuario_atual = next((u for u in usuarios if u['cpf'] == session['usuario_cpf']), None)
+    
+    if not usuario_atual:
+        flash('Usuário não encontrado')
+        return redirect('/login')
+    
+    total = sum(t[3] for t in usuario_atual['transferencias'])
+    return render_template("historico_transferencia.html", 
+                         transferencias=usuario_atual['transferencias'], 
+                         total=total)
 
 @app.route('/adicionar_transferencia', methods=['GET', 'POST'])
 def adicionar_transferencia():
+    if 'usuario_cpf' not in session:
+        flash('Por favor, faça login primeiro')
+        return redirect('/login')
+    
+    usuario_atual = next((u for u in usuarios if u['cpf'] == session['usuario_cpf']), None)
+    if not usuario_atual:
+        flash('Usuário não encontrado')
+        return redirect('/login')
+
     if request.method == 'POST':
         data_sem_formatar = request.form['data']
         entrada_saida = request.form['entrada_saida']
         valor = float(request.form['valor'])
-        codigo = len(transferencias) + 1
+        codigo = len(usuario_atual['transferencias']) + 1
         data_formatando = data_sem_formatar.split('-')
         data = f"{data_formatando[2]}/{data_formatando[1]}/{data_formatando[0]}"
-        transferencias.append([codigo, data, entrada_saida, valor])
+        
+        usuario_atual['transferencias'].append({
+            'codigo': codigo,
+            'data': data,
+            'entrada_saida': entrada_saida,
+            'valor': valor
+        })
+        
+        flash('Transferência adicionada com sucesso!')
         return redirect('/historico_transferencia')  
-    return render_template('adicionar_transferencia.html')  
-
+    
+    return render_template('adicionar_transferencia.html')
 
 @app.route('/editar_transferencia/<int:codigo>', methods=['GET', 'POST'])
 def editar_transferencia(codigo):
-    global transferencias
-    transferencia = None
+    if 'usuario_cpf' not in session:
+        flash('Por favor, faça login primeiro')
+        return redirect('/login')
     
-    # 1. Encontra a transferência pelo código
-    for t in transferencias:
-        if t[0] == codigo:
+    usuario_atual = next((u for u in usuarios if u['cpf'] == session['usuario_cpf']), None)
+    if not usuario_atual:
+        flash('Usuário não encontrado')
+        return redirect('/login')
+
+    transferencia = None
+    for t in usuario_atual['transferencias']:
+        if t['codigo'] == codigo:
             transferencia = t
             break
     
@@ -217,45 +253,42 @@ def editar_transferencia(codigo):
         entrada_saida = request.form['entrada_saida']
         valor = float(request.form['valor'])
         
-        try:
-            # Formata a data (DD/MM/YYYY → YYYY-MM-DD)
-            data_formatando = data_sem_formatar.split('-')
-            data = f"{data_formatando[2]}/{data_formatando[1]}/{data_formatando[0]}"
-        except:
-            flash("Formato de data inválido!")
-            return redirect(f'/editar_transferencia/{codigo}')
+        data_formatando = data_sem_formatar.split('-')
+        data = f"{data_formatando[2]}/{data_formatando[1]}/{data_formatando[0]}"
         
-        # 2. Atualiza a transferência existente (sem index)
-        for t in transferencias:
-            if t[0] == codigo:
-                t[1] = data
-                t[2] = entrada_saida
-                t[3] = valor
-                break
+        transferencia['data'] = data
+        transferencia['entrada_saida'] = entrada_saida
+        transferencia['valor'] = valor
         
         flash("Transferência editada com sucesso!")
         return redirect('/historico_transferencia')
     
     # Prepara a data para o formulário (YYYY-MM-DD)
     data_input = ""
-    if transferencia[1].count('/') == 2:
-        try:
-            day, month, year = transferencia[1].split('/')
-            data_input = f"{year}-{month}-{day}"
-        except:
-            data_input = ""
+    if transferencia['data'].count('/') == 2:
+        day, month, year = transferencia['data'].split('/')
+        data_input = f"{year}-{month}-{day}"
     
     return render_template('editar_transferencia.html', 
                          codigo=codigo, 
                          data=data_input, 
-                         entrada_saida=transferencia[2], 
-                         valor=transferencia[3])
+                         entrada_saida=transferencia['entrada_saida'], 
+                         valor=transferencia['valor'])
 
 @app.route('/apagar_transferencia/<int:codigo>')
 def apagar_transferencia(codigo):
-    global transferencias
-    transferencias = [t for t in transferencias if t[0] != codigo]
-    return redirect('/historico_transferencia') 
+    if 'usuario_cpf' not in session:
+        flash('Por favor, faça login primeiro')
+        return redirect('/login')
+    
+    usuario_atual = next((u for u in usuarios if u['cpf'] == session['usuario_cpf']), None)
+    if not usuario_atual:
+        flash('Usuário não encontrado')
+        return redirect('/login')
+    
+    usuario_atual['transferencias'] = [t for t in usuario_atual['transferencias'] if t['codigo'] != codigo]
+    flash('Transferência removida com sucesso!')
+    return redirect('/historico_transferencia')
 
 
 @app.route("/reserva_emergencia", methods=["GET", "POST"])
