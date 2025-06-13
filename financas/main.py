@@ -262,7 +262,6 @@ def editar_transferencia(codigo):
     transferencia = next((t for t in usuario_atual['transferencias'] if t['codigo'] == codigo), None)
     
     if transferencia is None:
-        flash("Transferência não encontrada!")
         return redirect('/historico_transferencia')
 
     if request.method == 'POST':
@@ -303,7 +302,6 @@ def editar_transferencia(codigo):
                 'tipo': 'entrada' if valor > 0 else 'saida'
             })
             
-            flash("Transferência editada com sucesso!")
             return redirect('/historico_transferencia')
             
         except Exception as e:
