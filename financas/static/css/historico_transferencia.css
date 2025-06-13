@@ -89,17 +89,15 @@ nav a {
 }
 
 table {
-    margin-left: 50px;
-    min-width: 50%;
-    justify-content: center;
-    margin-bottom: 20px;
-    border-color: black;
+    width: 1000px;
+    max-width: 1000px;
+    margin: 30px auto;
     border-collapse: separate;
-    /* Isso é essencial para o border-radius funcionar */
     border-spacing: 0;
-    /* Remove espaçamento entre células */
-    border-radius: 20px;
-    /* Arredonda os cantos da tabela */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    background-color: white;
 }
 
 th {
