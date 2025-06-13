@@ -33,7 +33,6 @@ body {
 .logo{
         display: flex;
         align-items: center;
-        gap: 10px;
 }
 
 .nome-logo {
@@ -188,10 +187,6 @@ tr:last-child td:last-child {
 .saldo-total {
   justify-self: center;
   font-size: 30px;
-}
-
-.saldo-total p {
-  color: {% if total >= 0 %}var(--cor-positivo){% else %}var(--cor-negativo){% endif %};
 }
 
 .rodape {

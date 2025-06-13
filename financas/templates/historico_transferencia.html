@@ -11,9 +11,10 @@
 
 <body>
     <div class="cabecalho">
+
         <div class="logo">
-            <h2 class="nome-logo">BIGBANK</h2>
-            <img class="porquinho-logo" src="../static/img/logo-porquinho.png" alt="Logo do Site">
+            <h2 class="nome-logo"> BIGBANK </h2>
+            <img class="porquinho-logo" src="static/img/logo-porquinho.png" alt=" Logo do Site ">
         </div>
 
         <nav>
@@ -26,7 +27,6 @@
             {% endif %}
         </nav>
     </div>
-
     <div class="conteudo-principal">
         <div class="titulo">
             <h2>Histórico de transferências</h2>    
@@ -34,7 +34,9 @@
         
         <div class="saldo-total">
             <div>Saldo Total</div>
-            <p class="saldo-valor">R$ {{ '%.2f'|format(total) }}</p>
+            <p class="saldo-valor {% if total < 0 %}saldo-negativo{% endif %}">
+                R$ {{ '%.2f'|format(total) }}
+            </p>
         </div>
 
         <div class="container">
@@ -113,12 +115,10 @@
     <footer class="rodape">
         <h2 class="nome-logo">BIGBANK</h2>
         <nav class="rodape-nav">
-            <a href="/" class="home">Home</a>
-            <a href="/inicial_usuario" class="transferencias">Usuário</a>
-            {% if 'usuario_cpf' not in session %}
-                <a href="/login" class="login">Login</a>
-                <a href="/cadastro" class="cadastro">Cadastro</a>
-            {% endif %}
+            <a href="/" class="home"> Home </a>
+            <a href="/inicial_usuario" class="transferencias"> Usuário </a>
+            <a href="/login" class="login"> Login </a>
+            <a href="/cadastro" class="cadastro"> Cadastro </a>
         </nav>
         <p class="contato">Contato: (18) 99139-1404</p>
         <p class="email">Email: contato@bigbank.com.br</p>
