@@ -185,6 +185,15 @@ tr:last-child td:last-child {
     object-fit: contain;
 }
 
+.saldo-total {
+  justify-self: center;
+  font-size: 30px;
+}
+
+.saldo-total p {
+  color: {% if total >= 0 %}var(--cor-positivo){% else %}var(--cor-negativo){% endif %};
+}
+
 .rodape {
     margin-top: 120px;
     background-color: var(--cor-principal);

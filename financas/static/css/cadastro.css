@@ -13,15 +13,6 @@ body {
     min-height: 100vh; /* Obrigatório para funcionar */
 }
 
-.flash-messages {
-    padding: 10px;
-    text-align: center;
-    color: var(--cor-principal);
-    width: 280px;
-    margin-top: 30px;
-    animation: flash-out 5s ease 7s forwards; /* <-- Aqui aplica a animação */
-}
-
 @keyframes flash-out {
     0% {
         opacity: 1;

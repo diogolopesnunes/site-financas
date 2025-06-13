@@ -1,25 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/cadastro.css">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BigBANK</title>
+    <title>Editar Transferência - BigBANK</title>
 </head>
-
 <body>
-
-
     <div class="cabecalho">
-
         <div class="logo">
             <h2 class="nome-logo"> BIGBANK </h2>
-            <img class="porquinho-logo" src="../static/img/logo-porquinho.png" alt=" Logo do Site ">
+            <img class="porquinho-logo" src="../static/img/logo-porquinho.png" alt="Logo do Site">
         </div>
-
         <nav>
             <a href="/" class="home"> Home </a>
             <a href="/inicial_usuario" class="transferencias"> Usuário </a>
@@ -31,46 +24,41 @@
         </nav>
     </div>
 
-
     <div>
-
-        <form method="post" action="/editar_transferencia/{{ codigo }}">
-        
-            <h2 class="titulo" >Editar Transferencias</h2>
-
-            <input type="date" name="data" placeholder="Insira a Data" value="{{ data }}" required><br>
+        <form method="POST" action="/editar_transferencia/{{ transferencia.codigo }}">
+            <h2 class="titulo">Editar Transferência</h2>
             
-            <input type="text" name="entrada_saida" placeholder="Insira a Origem da Entrada/Saída" value="{{ entrada_saida }}" required><br>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for message in messages %}
+                            <div class="flash-message">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
 
-            <input type="number " name="valor" placeholder="Insira o Valor Positivo ou Negativo" value="{{ valor }}" required><br>
+            <input type="date" name="data" placeholder="Data" value="{{ data }}" required><br>
+            
+            <input type="text" name="entrada_saida" placeholder="Origem da Transação" value="{{ transferencia.entrada_saida }}" required><br>
 
-            <button type="submit">Adicionar</button>
+            <input type="number" name="valor" step="0.01" placeholder="Valor" value="{{ transferencia.valor }}" required><br>
 
+            <button type="submit">Salvar Alterações</button>
             <a href="/historico_transferencia" class="cancelar">Cancelar</a>
         </form>
     </div>
 
-
-
-
     <footer class="rodape">
-
-
         <h2 class="nome-logo"> BIGBANK </h2>
-
         <nav>
             <a href="/" class="home"> Home </a>
-            <a href="/perfil" class="transferencias"> Transferencias </a>
+            <a href="/historico_transferencia" class="transferencias"> Transferências </a>
             <a href="/login" class="login"> Login </a>
             <a href="/cadastro" class="cadastro"> Cadastro </a>
         </nav>
-
         <p class="contato"> Contato: (18) 99139-1404</p>
         <p class="email"> Email: contato@bigbank.com.br </p>
-
     </footer>
-
-
 </body>
-
 </html>

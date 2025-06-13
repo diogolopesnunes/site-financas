@@ -3,8 +3,11 @@
 :root {
     --cor-principal: #3A6351;
     --cor-secundaria: #1F3B73;
+    --cor-flash: #C9A74F;
     --cinza: #A8A8A8;
     --branco: #FFFFFF;
+    --cor-positivo: #4CAF50;
+    --cor-negativo: #F44336;   
 }
 
 *{
@@ -37,8 +40,10 @@
 
 .flash-messages {
     padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
     text-align: center;
-    color: var(--cor-principal);
+    color: var(--cor-flash);
     width: 280px;
     margin-top: 30px;
     animation: flash-out 5s ease 7s forwards; /* <-- Aqui aplica a animação */
@@ -47,8 +52,10 @@
 @keyframes flash-out {
     0% {
         opacity: 1;
+        display: block;
     }
     100% {
         opacity: 0;
+        display: none;
     }
 }

@@ -174,9 +174,9 @@ def historico_transferencia():
     saidas = []
 
     for t in usuario_atual['transferencias']:
-        if t['entrada_saida'] == 'entrada':
+        if t['valor'] > 0:  # Agora verificamos pelo valor
             entradas.append(t)
-        elif t['entrada_saida'] == 'saida':
+        else:
             t_corrigida = t.copy()
             t_corrigida['valor'] = abs(t_corrigida['valor'])
             saidas.append(t_corrigida)
@@ -203,9 +203,9 @@ def adicionar_transferencia():
         try:
             data_sem_formatar = request.form.get('data')
             valor_str = request.form.get('valor')
-            descricao = request.form.get('descricao', '')  # Adicione este campo no formulário HTML
+            entrada_saida = request.form.get('entrada_saida', '')  # Alterado para entrada_saida
 
-            if not data_sem_formatar or not valor_str:
+            if not data_sem_formatar or not valor_str or not entrada_saida:
                 flash('Preencha todos os campos!')
                 return redirect('/adicionar_transferencia')
 
@@ -231,18 +231,15 @@ def adicionar_transferencia():
             except:
                 data = data_sem_formatar
 
-            entrada_ou_saida = "entrada" if valor > 0 else "saida"  # Corrigido para "saida" (sem acento)
-
             nova_transferencia = {
                 'codigo': codigo,
                 'data': data,
-                'descricao': descricao,
-                'entrada_saida': entrada_ou_saida,
-                'valor': valor
+                'entrada_saida': entrada_saida,  # Usando entrada_saida diretamente
+                'valor': valor,
+                'tipo': 'entrada' if valor > 0 else 'saida'  # Adicionado campo tipo separado
             }
 
             usuario_atual['transferencias'].append(nova_transferencia)
-            flash('Transferência adicionada com sucesso!')
             return redirect('/historico_transferencia')
 
         except Exception as e:
@@ -270,46 +267,64 @@ def editar_transferencia(codigo):
 
     if request.method == 'POST':
         try:
-            data_sem_formatar = request.form['data']
-            entrada_saida = request.form['entrada_saida'].lower()
-            valor = float(request.form['valor'])
-            descricao = request.form.get('descricao', '')
+            data_sem_formatar = request.form.get('data')
+            valor_str = request.form.get('valor')
+            entrada_saida = request.form.get('entrada_saida', '')
             
+            # Validações
+            if not all([data_sem_formatar, valor_str, entrada_saida]):
+                flash('Preencha todos os campos obrigatórios!')
+                return redirect(f'/editar_transferencia/{codigo}')
+            
+            try:
+                valor = float(valor_str)
+                if valor == 0:
+                    flash('O valor não pode ser zero!')
+                    return redirect(f'/editar_transferencia/{codigo}')
+            except ValueError:
+                flash('Valor inválido! Digite um número válido.')
+                return redirect(f'/editar_transferencia/{codigo}')
+
             # Formatar data
-            if '-' in data_sem_formatar:
-                year, month, day = data_sem_formatar.split('-')
-                data = f"{day}/{month}/{year}"
-            else:
-                data = data_sem_formatar
+            try:
+                if '-' in data_sem_formatar:  # Formato YYYY-MM-DD
+                    year, month, day = data_sem_formatar.split('-')
+                    data_formatada = f"{day}/{month}/{year}"
+                else:  # Assume que já está no formato DD/MM/YYYY
+                    data_formatada = data_sem_formatar
+            except:
+                data_formatada = data_sem_formatar
             
-            # Corrigir valor para negativo se for saída
-            valor_corrigido = abs(valor) if entrada_saida == 'entrada' else -abs(valor)
-            
+            # Atualizar transferência
             transferencia.update({
-                'data': data,
-                'descricao': descricao,
+                'data': data_formatada,
                 'entrada_saida': entrada_saida,
-                'valor': valor_corrigido
+                'valor': valor,
+                'tipo': 'entrada' if valor > 0 else 'saida'
             })
             
             flash("Transferência editada com sucesso!")
             return redirect('/historico_transferencia')
-        except (ValueError, KeyError) as e:
+            
+        except Exception as e:
             flash(f"Erro ao processar os dados: {str(e)}")
-            return redirect(f'/edicionar_transferencia/{codigo}')
+            return redirect(f'/editar_transferencia/{codigo}')
 
-    # Preparar data para o input type="date"
-    data_input = ""
-    if '/' in transferencia['data']:
+    # Preparar dados para o template
+    data_input = transferencia['data']
+    if '/' in data_input:  # Converter DD/MM/YYYY para YYYY-MM-DD
         try:
-            day, month, year = transferencia['data'].split('/')
+            day, month, year = data_input.split('/')
             data_input = f"{year}-{month}-{day}"
-        except ValueError:
-            data_input = transferencia['data']
-    
+        except:
+            pass
+            
     return render_template('editar_transferencia.html',
                          transferencia=transferencia,
-                         data=data_input)
+                         data=data_input,
+                         valor=transferencia['valor'],
+                         entrada_saida=transferencia['entrada_saida'],
+                         codigo=transferencia['codigo'])
 
 @app.route('/apagar_transferencia/<int:codigo>')
 def apagar_transferencia(codigo):
