@@ -124,14 +124,30 @@ def editar():
     if request.method == "POST":
         nome = request.form.get("nome")
         tel = request.form.get("tel")
+        novo_cpf = request.form.get("cpf").strip()  # Novo CPF do formulário
         email = request.form.get("email")
         senha = request.form.get("senha")
         confirm_senha = request.form.get("confirm_senha")
 
-        if not all([nome, tel, email, senha, confirm_senha]):
+        if not all([nome, tel, novo_cpf, email, senha, confirm_senha]):
             flash("Preencha todos os campos!")
             return redirect("/editar_perfil")
 
+        # Verifica se o novo CPF é diferente do atual
+        if novo_cpf != usuario_atual['cpf']:
+            # Verifica se o novo CPF já existe em outro usuário
+            for u in usuarios:
+                if u['cpf'] == novo_cpf and u['cpf'] != usuario_atual['cpf']:
+                    flash('CPF já cadastrado por outro usuário')
+                    return redirect("/editar_perfil")
+            
+            # Atualiza o CPF no usuário
+            usuario_atual['cpf'] = novo_cpf
+            # Atualiza o CPF na sessão
+            session['usuario_cpf'] = novo_cpf
+            flash("CPF atualizado com sucesso!")
+
+        # Restante das validações (senha, etc.)
         if senha != confirm_senha:
             flash("Senhas não coincidem!")
             return redirect("/editar_perfil")
@@ -149,11 +165,13 @@ def editar():
             flash("A senha deve conter pelo menos uma letra maiúscula, uma minúscula, um número e um caractere especial")
             return redirect("/editar_perfil")
 
+        # Atualiza os demais campos
         usuario_atual['nome'] = nome
         usuario_atual['tel'] = tel
         usuario_atual['email'] = email
         usuario_atual['senha'] = senha
         
+        flash("Perfil atualizado com sucesso!")
         return redirect("/inicial_usuario")
         
     return render_template("editar_perfil.html", usuario=usuario_atual)

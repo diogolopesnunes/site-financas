@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-*{
-    margin: 0 ;
+* {
+    margin: 0;
     padding: 0;
     font-family: "Montserrat", sans-serif;
     text-decoration: none;
 }
 
-html, body {
+html,
+body {
     height: 100%;
 }
 
@@ -30,18 +31,18 @@ body {
     height: 43px;
 }
 
-.logo{
-        display: flex;
-        align-items: center;
+.logo {
+    display: flex;
+    align-items: center;
 }
 
 .nome-logo {
-        font-size: 24px;
-        color: white;
-        font-weight: bold;
-        margin-right: 0px;
-        margin-top: 0px;
-        justify-items: start;
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+    margin-right: 0px;
+    margin-top: 0px;
+    justify-items: start;
 }
 
 .porquinho-logo {
@@ -56,51 +57,54 @@ h2 {
 }
 
 .titulo {
-  display: flex;
-  justify-self: center;
+    display: flex;
+    justify-self: center;
 }
 
 h3 {
-  font-weight: bold;
-  font-size: 30px;
-  margin-left: 30px;
-  
+    font-weight: bold;
+    font-size: 30px;
+    margin-left: 30px;
+
 }
 
 .saldo-total {
-  justify-self: center;
-  font-size: 30px;
+    justify-self: center;
+    font-size: 30px;
 
 }
 
 nav a {
-        margin: 0px 25px;
-        color: white;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 18px;
-        text-decoration: none;
+    margin: 0px 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 18px;
+    text-decoration: none;
 }
 
 .container {
-  font-weight: normal;
-  justify-self: center;
+    font-weight: normal;
+    justify-self: center;
 }
 
 table {
-      margin-left: 50px;
-      min-width: 50%;
-      justify-content: center;
-      margin-bottom: 20px;
-      border-color: black;
-      border-collapse: separate; /* Isso é essencial para o border-radius funcionar */
-      border-spacing: 0; /* Remove espaçamento entre células */
-      border-radius: 20px; /* Arredonda os cantos da tabela */
-    }
+    margin-left: 50px;
+    min-width: 50%;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-color: black;
+    border-collapse: separate;
+    /* Isso é essencial para o border-radius funcionar */
+    border-spacing: 0;
+    /* Remove espaçamento entre células */
+    border-radius: 20px;
+    /* Arredonda os cantos da tabela */
+}
 
 th {
-  background-color: var(--cor-principal);
-  color: white;
+    background-color: var(--cor-principal);
+    color: white;
 }
 
 td {
@@ -108,7 +112,8 @@ td {
     color: black;
 }
 
-td, th {
+td,
+th {
     font-size: 30px;
     font-weight: normal;
     padding: 10px;
@@ -139,16 +144,23 @@ tr:last-child td:last-child {
 
 
 .saldo {
-      font-weight: bold;
-    }
+    font-weight: bold;
+}
 
 .actions {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
-    }
+}
 
+.saldo-positivo {
+    color: var(--cor-positivo);
+}
+
+.saldo-negativo {
+    color: var(--cor-negativo);
+}
 
 
 .botao {
@@ -162,10 +174,11 @@ tr:last-child td:last-child {
     border: none;
     margin-bottom: 20px;
     margin-left: 50px;
-    width: 15%;
+    width: 220px;
 }
 
-.botao-pequeno-lapis, .botao-pequeno-lixo {
+.botao-pequeno-lapis,
+.botao-pequeno-lixo {
     display: inline-block;
     padding-left: 20px;
     padding-right: 20px;
@@ -177,7 +190,7 @@ tr:last-child td:last-child {
     border: none;
 }
 
-.botao-pequeno-lapis img, 
+.botao-pequeno-lapis img,
 .botao-pequeno-lixo img {
     width: 100%;
     height: 100%;
@@ -185,8 +198,8 @@ tr:last-child td:last-child {
 }
 
 .saldo-total {
-  justify-self: center;
-  font-size: 30px;
+    justify-self: center;
+    font-size: 30px;
 }
 
 .rodape {

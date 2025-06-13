@@ -34,7 +34,7 @@
         
         <div class="saldo-total">
             <div>Saldo Total</div>
-            <p class="saldo-valor {% if total < 0 %}saldo-negativo{% endif %}">
+            <p class="saldo-valor {% if total < 0 %}saldo-negativo{% endif %} {% if total > 0 %}saldo-positivo{% endif %} ">
                 R$ {{ '%.2f'|format(total) }}
             </p>
         </div>
